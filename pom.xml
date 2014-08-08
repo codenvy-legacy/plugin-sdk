@@ -24,6 +24,7 @@
     <packaging>pom</packaging>
     <name>Codenvy :: Parent</name>
     <modules>
+        <module>codenvy-ext-plugins</module>
         <module>codenvy-ide-env-dummy</module>
         <module>codenvy-sdk-api-war</module>
         <module>codenvy-runner-sdk</module>
