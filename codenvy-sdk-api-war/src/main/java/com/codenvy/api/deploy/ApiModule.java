@@ -75,5 +75,11 @@ public class ApiModule extends AbstractModule {
         bind(AsynchronousJobPool.class).to(CodenvyAsynchronousJobPool.class);
         bind(new PathKey<>(AsynchronousJobService.class, "/async/{ws-id}")).to(AsynchronousJobService.class);
         bind(TokenValidator.class).to(TokenValidatorImpl.class);
+
+        install(new com.codenvy.api.analytics.AnalyticsModule());
+        install(new com.codenvy.api.project.server.BaseProjectModule());
+        install(new com.codenvy.api.builder.internal.BuilderModule());
+        install(new com.codenvy.api.runner.internal.RunnerModule());
+        install(new com.codenvy.api.vfs.server.VirtualFileSystemModule());
     }
 }
