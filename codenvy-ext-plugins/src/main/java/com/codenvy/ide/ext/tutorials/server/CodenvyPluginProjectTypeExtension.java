@@ -27,6 +27,7 @@ import javax.inject.Singleton;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /** @author Artem Zatsarynnyy */
 @Singleton
@@ -160,5 +161,10 @@ public class CodenvyPluginProjectTypeExtension implements ProjectTypeExtension {
                                                 "of a server side component and server-client side communication.",
                                                 baseUrl + "/server-side-tutorial.zip"));
         return list;
+    }
+
+    @Override
+    public Map<String, String> getIconRegistry() {
+        return null;
     }
 }
