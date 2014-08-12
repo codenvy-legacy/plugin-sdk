@@ -11,17 +11,17 @@
 package com.codenvy.ide.tutorial.parts;
 
 import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.ui.workspace.PartPresenter;
-import com.codenvy.ide.api.ui.workspace.WorkspaceAgent;
+import com.codenvy.ide.api.parts.PartPresenter;
+import com.codenvy.ide.api.parts.PartStackType;
+import com.codenvy.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.parts.howto.TutorialHowToPresenter;
 import com.codenvy.ide.tutorial.parts.part.MyPartFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import static com.codenvy.ide.api.ui.workspace.PartStackType.EDITING;
-import static com.codenvy.ide.api.ui.workspace.PartStackType.INFORMATION;
-import static com.codenvy.ide.api.ui.workspace.PartStackType.NAVIGATION;
-import static com.codenvy.ide.api.ui.workspace.PartStackType.TOOLING;
+import static com.codenvy.ide.api.parts.PartStackType.INFORMATION;
+import static com.codenvy.ide.api.parts.PartStackType.NAVIGATION;
+import static com.codenvy.ide.api.parts.PartStackType.TOOLING;
 
 /** Extension used to demonstrate the parts feature. */
 @Singleton
@@ -32,7 +32,7 @@ public class PartsTutorialExtension {
     public PartsTutorialExtension(WorkspaceAgent workspaceAgent,
                                   TutorialHowToPresenter howToPresenter,
                                   MyPartFactory myPartFactory) {
-        workspaceAgent.openPart(howToPresenter, EDITING);
+        workspaceAgent.openPart(howToPresenter, PartStackType.EDITING);
 
         PartPresenter myPartPresenter = myPartFactory.create("Part on the left 1");
         workspaceAgent.openPart(myPartPresenter, NAVIGATION);

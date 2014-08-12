@@ -10,10 +10,11 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.notification;
 
+import com.codenvy.ide.api.action.ActionManager;
+import com.codenvy.ide.api.action.DefaultActionGroup;
 import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.ui.action.ActionManager;
-import com.codenvy.ide.api.ui.action.DefaultActionGroup;
-import com.codenvy.ide.api.ui.workspace.WorkspaceAgent;
+import com.codenvy.ide.api.parts.PartStackType;
+import com.codenvy.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.notification.action.ShowErrorNotification;
 import com.codenvy.ide.tutorial.notification.action.ShowInfoNotification;
 import com.codenvy.ide.tutorial.notification.action.ShowProgressNotification;
@@ -22,8 +23,7 @@ import com.codenvy.ide.tutorial.notification.part.TutorialHowToPresenter;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import static com.codenvy.ide.api.ui.action.IdeActions.GROUP_MAIN_MENU;
-import static com.codenvy.ide.api.ui.workspace.PartStackType.EDITING;
+import static com.codenvy.ide.api.action.IdeActions.GROUP_MAIN_MENU;
 
 /** Extension used to demonstrate the Notification feature. */
 @Singleton
@@ -36,7 +36,7 @@ public class NotificationTutorialExtension {
                                          ShowWarningNotification showWarningNotification, ShowErrorNotification showErrorNotification,
                                          ShowProgressNotification showProgressNotification, WorkspaceAgent workspaceAgent,
                                          TutorialHowToPresenter howToPresenter) {
-        workspaceAgent.openPart(howToPresenter, EDITING);
+        workspaceAgent.openPart(howToPresenter, PartStackType.EDITING);
 
         DefaultActionGroup mainMenu = (DefaultActionGroup)actionManager.getAction(GROUP_MAIN_MENU);
 

@@ -14,17 +14,17 @@ import com.codenvy.ide.api.editor.EditorRegistry;
 import com.codenvy.ide.api.extension.Extension;
 import com.codenvy.ide.api.filetypes.FileType;
 import com.codenvy.ide.api.filetypes.FileTypeRegistry;
-import com.codenvy.ide.api.ui.workspace.PartStackType;
-import com.codenvy.ide.api.ui.workspace.WorkspaceAgent;
+import com.codenvy.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.wysiwyg.part.TutorialHowToPresenter;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.inject.Inject;
 
 import org.vectomatic.dom.svg.ui.SVGResource;
 
+import static com.codenvy.ide.api.parts.PartStackType.EDITING;
+
 /**
  * @author <a href="mailto:evidolob@codenvy.com">Evgen Vidolob</a>
- * @version $Id:
  */
 @Extension(title = "WYSIWYG Editor Extension", version = "1.0")
 public class WysiwygExtension {
@@ -40,8 +40,8 @@ public class WysiwygExtension {
         FileType htmlFileType = new FileType(res.htmlFile(), "text/htm", "htm");
         fileTypeRegistry.registerFileType(htmlFileType);
         editorRegistry.registerDefaultEditor(htmlFileType, editorProvider);
-        
 
-        workspaceAgent.openPart(howToPresenter, PartStackType.EDITING);
+
+        workspaceAgent.openPart(howToPresenter, EDITING);
     }
 }

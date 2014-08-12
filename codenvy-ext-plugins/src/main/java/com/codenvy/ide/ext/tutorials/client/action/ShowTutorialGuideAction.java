@@ -11,10 +11,10 @@
 package com.codenvy.ide.ext.tutorials.client.action;
 
 import com.codenvy.api.analytics.logger.AnalyticsEventLogger;
-import com.codenvy.ide.api.resources.ResourceProvider;
-import com.codenvy.ide.api.resources.model.Project;
-import com.codenvy.ide.api.ui.action.Action;
-import com.codenvy.ide.api.ui.action.ActionEvent;
+import com.codenvy.ide.api.action.Action;
+import com.codenvy.ide.api.action.ActionEvent;
+import com.codenvy.ide.api.app.AppContext;
+import com.codenvy.ide.api.app.CurrentProject;
 import com.codenvy.ide.ext.tutorials.client.GuidePageController;
 import com.codenvy.ide.ext.tutorials.client.TutorialsLocalizationConstant;
 import com.codenvy.ide.ext.tutorials.client.TutorialsResources;
@@ -25,25 +25,24 @@ import com.google.inject.Singleton;
 /**
  * Action to open a tutorial guide.
  *
- * @author <a href="mailto:azatsarynnyy@codenvy.com">Artem Zatsarynnyy</a>
- * @version $Id: ShowTutorialGuideAction.java Sep 16, 2013 1:58:47 PM azatsarynnyy $
+ * @author Artem Zatsarynnyy
  */
 @Singleton
 public class ShowTutorialGuideAction extends Action {
 
-    private final ResourceProvider     resourceProvider;
-    private final GuidePageController  guidePageController;
-    private final AnalyticsEventLogger eventLogger;
+    private AppContext           appContext;
+    private GuidePageController  guidePageController;
+    private AnalyticsEventLogger eventLogger;
 
     @Inject
     public ShowTutorialGuideAction(GuidePageController guidePageController, TutorialsResources resources,
-                                   ResourceProvider resourceProvider,
+                                   AppContext appContext,
                                    TutorialsLocalizationConstant localizationConstants,
                                    AnalyticsEventLogger eventLogger) {
         super(localizationConstants.showTutorialGuideActionText(),
               localizationConstants.showTutorialGuideActionDescription(), resources.guide());
         this.guidePageController = guidePageController;
-        this.resourceProvider = resourceProvider;
+        this.appContext = appContext;
         this.eventLogger = eventLogger;
     }
 
@@ -51,16 +50,16 @@ public class ShowTutorialGuideAction extends Action {
     @Override
     public void actionPerformed(ActionEvent e) {
         eventLogger.log("IDE: Show tutorial");
-        guidePageController.openTutorialPage();
+        guidePageController.openTutorialGuide();
     }
 
     /** {@inheritDoc} */
     @Override
     public void update(ActionEvent e) {
-        Project activeProject = resourceProvider.getActiveProject();
+        CurrentProject activeProject = appContext.getCurrentProject();
         if (activeProject != null) {
             e.getPresentation()
-             .setEnabledAndVisible(activeProject.getDescription().getProjectTypeId().equals(Constants.TUTORIAL_ID));
+             .setEnabledAndVisible(activeProject.getProjectDescription().getProjectTypeId().equals(Constants.TUTORIAL_ID));
         } else {
             e.getPresentation().setEnabledAndVisible(false);
         }

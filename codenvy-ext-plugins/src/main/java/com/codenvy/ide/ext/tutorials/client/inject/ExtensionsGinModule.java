@@ -8,23 +8,21 @@
  * Contributors:
  *   Codenvy, S.A. - initial API and implementation
  *******************************************************************************/
-package com.codenvy.ide.tutorial.wizard.inject;
+package com.codenvy.ide.ext.tutorials.client.inject;
 
 import com.codenvy.ide.api.extension.ExtensionGinModule;
-import com.codenvy.ide.api.wizard.DefaultWizard;
+import com.codenvy.ide.ext.tutorials.client.update.UpdateServiceClient;
+import com.codenvy.ide.ext.tutorials.client.update.UpdateServiceClientImpl;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
 
 /**
- * GIN module for 'Wizard Tutorial' extension.
- *
- * @author <a href="mailto:aplotnikov@codenvy.com">Andrey Plotnikov</a>
+ * @author Vitaly Parfonov
  */
 @ExtensionGinModule
-public class WizardTutorialGinModule extends AbstractGinModule {
-    /** {@inheritDoc} */
+public class ExtensionsGinModule extends AbstractGinModule {
     @Override
     protected void configure() {
-        bind(DefaultWizard.class).annotatedWith(SimpleWizard.class).toProvider(SimpleWizardProvider.class).in(Singleton.class);
+        bind(UpdateServiceClient.class).to(UpdateServiceClientImpl.class).in(Singleton.class);
     }
 }

@@ -11,8 +11,8 @@
 package com.codenvy.ide.tutorial.theme;
 
 import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.ui.workspace.PartStackType;
-import com.codenvy.ide.api.ui.workspace.WorkspaceAgent;
+import com.codenvy.ide.api.parts.PartStackType;
+import com.codenvy.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.theme.howto.TutorialHowToPresenter;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

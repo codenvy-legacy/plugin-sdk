@@ -15,15 +15,15 @@ package com.codenvy.ide.ext.helloworld;
  * to talk to Parts and Action API. Gin and Singleton
  * imports are obligatory as well for any extension
  */
+
+import com.codenvy.ide.api.action.ActionManager;
+import com.codenvy.ide.api.action.Constraints;
+import com.codenvy.ide.api.action.DefaultActionGroup;
+import com.codenvy.ide.api.action.IdeActions;
 import com.codenvy.ide.api.extension.Extension;
 import com.codenvy.ide.api.notification.Notification;
 import com.codenvy.ide.api.notification.Notification.Type;
 import com.codenvy.ide.api.notification.NotificationManager;
-import com.codenvy.ide.api.parts.ConsolePart;
-import com.codenvy.ide.api.ui.action.ActionManager;
-import com.codenvy.ide.api.ui.action.Constraints;
-import com.codenvy.ide.api.ui.action.DefaultActionGroup;
-import com.codenvy.ide.api.ui.action.IdeActions;
 import com.codenvy.ide.ext.helloworld.action.HelloWorldAction;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
