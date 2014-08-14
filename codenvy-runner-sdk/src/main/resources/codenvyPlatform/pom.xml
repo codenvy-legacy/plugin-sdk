@@ -16,8 +16,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.codenvy.ide</groupId>
-        <artifactId>codenvy-ide-parent</artifactId>
+        <groupId>com.codenvy.plugin-sdk</groupId>
+        <artifactId>codenvy-plugin-sdk-parent</artifactId>
         <version>$current_version$</version>
     </parent>
     <artifactId>codenvy-application-war</artifactId>
@@ -50,17 +50,27 @@
         <dependency>
             <groupId>com.codenvy.ide</groupId>
             <artifactId>codenvy-ide-client</artifactId>
-            <version>${project.version}</version>
+            <version>${codenvy.ide.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codenvy.ide</groupId>
+            <artifactId>codenvy-ide-jseditor</artifactId>
+            <version>${codenvy.ide.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codenvy.plugin-editor-codemirror</groupId>
+            <artifactId>plugin-editor-codemirror</artifactId>
+            <version>${codenvy.plugin-editor-codemirror.version}</version>
         </dependency>
         <dependency>
             <groupId>com.codenvy.ide</groupId>
             <artifactId>codenvy-ide-core</artifactId>
-            <version>${project.version}</version>
+            <version>${codenvy.ide.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.codenvy.ide</groupId>
+            <groupId>com.codenvy.plugin-sdk</groupId>
             <artifactId>codenvy-ide-env-dummy</artifactId>
-            <version>${project.version}</version>
+            <version>${codenvy.plugin-sdk.version}</version>
         </dependency>
         <dependency>
             <groupId>com.codenvy.platform-api</groupId>
@@ -76,31 +86,6 @@
             <groupId>com.codenvy.platform-api-gwt-client</groupId>
             <artifactId>codenvy-api-analytics-gwt-client</artifactId>
             <version>${codenvy.platform-api-gwt-client.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codenvy.ide</groupId>
-            <artifactId>codenvy-ext-java</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codenvy.ide</groupId>
-            <artifactId>codenvy-ext-web</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codenvy.ide</groupId>
-            <artifactId>codenvy-ext-ssh</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codenvy.ide</groupId>
-            <artifactId>codenvy-ext-builder</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codenvy.ide</groupId>
-            <artifactId>codenvy-ext-runner</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -179,7 +164,6 @@
                         <configuration>
                             <modules>
                                 <module>com.codenvy.ide.IDEPlatform</module>
-                                <module>com.codenvy.ide.ext.java.JavaParserWorker</module>
                             </modules>
                             <logLevel>INFO</logLevel>
                         </configuration>
@@ -189,7 +173,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
@@ -208,7 +192,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
