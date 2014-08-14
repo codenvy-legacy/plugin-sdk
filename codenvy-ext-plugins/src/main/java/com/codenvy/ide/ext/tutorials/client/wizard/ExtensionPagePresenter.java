@@ -13,7 +13,7 @@ package com.codenvy.ide.ext.tutorials.client.wizard;
 import com.codenvy.api.project.gwt.client.ProjectServiceClient;
 import com.codenvy.api.project.shared.dto.ProjectDescriptor;
 import com.codenvy.api.project.shared.dto.ProjectReference;
-import com.codenvy.ide.api.event.ProjectActionEvent_2;
+import com.codenvy.ide.api.event.OpenProjectEvent;
 import com.codenvy.ide.api.projecttype.wizard.ProjectWizard;
 import com.codenvy.ide.api.wizard.AbstractWizardPage;
 import com.codenvy.ide.collections.Jso;
@@ -176,7 +176,7 @@ public class ExtensionPagePresenter extends AbstractWizardPage implements Extens
             @Override
             protected void onSuccess(ProjectDescriptor result) {
                 ProjectReference projectToOpen = dtoFactory.createDto(ProjectReference.class).withName(result.getName());
-                eventBus.fireEvent(ProjectActionEvent_2.createOpenProjectEvent(projectToOpen));
+                eventBus.fireEvent(new OpenProjectEvent(projectToOpen));
                 callback.onSuccess();
             }
 
@@ -195,7 +195,7 @@ public class ExtensionPagePresenter extends AbstractWizardPage implements Extens
                                    @Override
                                    protected void onSuccess(ProjectDescriptor result) {
                                        ProjectReference projectToOpen = dtoFactory.createDto(ProjectReference.class).withName(result.getName());
-                                       eventBus.fireEvent(ProjectActionEvent_2.createOpenProjectEvent(projectToOpen));
+                                       eventBus.fireEvent(new OpenProjectEvent(projectToOpen));
                                        callback.onSuccess();
                                    }
 
