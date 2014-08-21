@@ -43,7 +43,11 @@ public class CodenvyPluginProjectTypeExtension implements ProjectTypeExtension {
                                              ProjectTypeDescriptionRegistry registry) {
         this.baseUrl = baseUrl;
         this.projectTemplateDescriptionLoader = projectTemplateDescriptionLoader;
-        projectType = new ProjectType(Constants.CODENVY_PLUGIN_ID, Constants.CODENVY_PLUGIN_NAME, Constants.CODENVY_CATEGORY);
+        projectType = new ProjectType(Constants.CODENVY_PLUGIN_ID,
+                                      Constants.CODENVY_PLUGIN_NAME,
+                                      Constants.CODENVY_CATEGORY,
+                                      "maven",
+                                      "sdk");
         registry.registerProjectType(this);
     }
 
@@ -57,8 +61,6 @@ public class CodenvyPluginProjectTypeExtension implements ProjectTypeExtension {
         final List<Attribute> list = new ArrayList<>(4);
         list.add(new Attribute(Constants.LANGUAGE, "java"));
         list.add(new Attribute(Constants.FRAMEWORK, "codenvy_sdk"));
-        list.add(new Attribute(Constants.BUILDER_NAME, "maven"));
-        list.add(new Attribute(Constants.RUNNER_NAME, "sdk"));
         return list;
     }
 
