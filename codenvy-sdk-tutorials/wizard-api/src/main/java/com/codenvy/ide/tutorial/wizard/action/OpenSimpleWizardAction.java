@@ -10,11 +10,11 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.wizard.action;
 
-import com.codenvy.ide.api.ui.action.Action;
-import com.codenvy.ide.api.ui.action.ActionEvent;
-import com.codenvy.ide.api.ui.wizard.DefaultWizard;
-import com.codenvy.ide.api.ui.wizard.WizardDialog;
-import com.codenvy.ide.api.ui.wizard.WizardDialogFactory;
+import com.codenvy.ide.api.action.Action;
+import com.codenvy.ide.api.action.ActionEvent;
+import com.codenvy.ide.api.wizard.DefaultWizard;
+import com.codenvy.ide.api.wizard.WizardDialog;
+import com.codenvy.ide.api.wizard.WizardDialogFactory;
 import com.codenvy.ide.tutorial.wizard.inject.SimpleWizard;
 import com.google.inject.Inject;
 

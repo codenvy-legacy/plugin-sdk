@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.wizard.pages.page1;
 
-import com.codenvy.ide.api.ui.wizard.AbstractWizardPage;
+import com.codenvy.ide.api.wizard.AbstractWizardPage;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 

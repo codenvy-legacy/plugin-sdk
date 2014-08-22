@@ -11,7 +11,7 @@
 package com.codenvy.ide.tutorial.gin;
 
 import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.ui.workspace.WorkspaceAgent;
+import com.codenvy.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.gin.annotation.MyClassWithAnnotationParam;
 import com.codenvy.ide.tutorial.gin.annotation.SimpleClass;
 import com.codenvy.ide.tutorial.gin.annotation.SimpleInterface;
@@ -30,7 +30,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
-import static com.codenvy.ide.api.ui.workspace.PartStackType.EDITING;
+import static com.codenvy.ide.api.parts.PartStackType.EDITING;
 
 /** Extension used to demonstrate how to use GIN. */
 @Singleton

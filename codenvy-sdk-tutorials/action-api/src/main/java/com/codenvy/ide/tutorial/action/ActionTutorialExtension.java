@@ -11,9 +11,10 @@
 package com.codenvy.ide.tutorial.action;
 
 import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.ui.action.ActionManager;
-import com.codenvy.ide.api.ui.action.DefaultActionGroup;
-import com.codenvy.ide.api.ui.workspace.WorkspaceAgent;
+import com.codenvy.ide.api.action.ActionManager;
+import com.codenvy.ide.api.action.DefaultActionGroup;
+import com.codenvy.ide.api.parts.PartStackType;
+import com.codenvy.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.action.action.ChangeItemAction;
 import com.codenvy.ide.tutorial.action.action.EnableAction;
 import com.codenvy.ide.tutorial.action.action.VisibleAction;
@@ -21,10 +22,9 @@ import com.codenvy.ide.tutorial.action.part.TutorialHowToPresenter;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import static com.codenvy.ide.api.ui.action.IdeActions.GROUP_MAIN_CONTEXT_MENU;
-import static com.codenvy.ide.api.ui.action.IdeActions.GROUP_MAIN_MENU;
-import static com.codenvy.ide.api.ui.action.IdeActions.GROUP_MAIN_TOOLBAR;
-import static com.codenvy.ide.api.ui.workspace.PartStackType.EDITING;
+import static com.codenvy.ide.api.action.IdeActions.GROUP_MAIN_CONTEXT_MENU;
+import static com.codenvy.ide.api.action.IdeActions.GROUP_MAIN_MENU;
+import static com.codenvy.ide.api.action.IdeActions.GROUP_MAIN_TOOLBAR;
 
 /** Extension used to demonstrate the Action feature. */
 @Singleton
@@ -36,7 +36,7 @@ public class ActionTutorialExtension {
     public ActionTutorialExtension(ActionManager actionManager, ActionTutorialResources resources, ChangeItemAction changeItemAction,
                                    VisibleAction visibleAction, EnableAction enableAction, WorkspaceAgent workspaceAgent,
                                    TutorialHowToPresenter howToPresenter) {
-        workspaceAgent.openPart(howToPresenter, EDITING);
+        workspaceAgent.openPart(howToPresenter, PartStackType.EDITING);
 
         // Get main groups of Main menu, Toolbar and Context menu
         DefaultActionGroup mainMenu = (DefaultActionGroup)actionManager.getAction(GROUP_MAIN_MENU);

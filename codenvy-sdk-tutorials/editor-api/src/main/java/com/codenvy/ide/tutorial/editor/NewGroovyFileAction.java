@@ -10,12 +10,14 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.editor;
 
+import com.codenvy.api.project.gwt.client.ProjectServiceClient;
+import com.codenvy.ide.api.app.AppContext;
 import com.codenvy.ide.api.editor.EditorAgent;
-import com.codenvy.ide.api.resources.ResourceProvider;
 import com.codenvy.ide.api.selection.SelectionAgent;
 import com.codenvy.ide.newresource.DefaultNewResourceAction;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.web.bindery.event.shared.EventBus;
 
 /**
  * Action to create new Groovy file.
@@ -28,17 +30,21 @@ public class NewGroovyFileAction extends DefaultNewResourceAction {
     private EditorTutorialResource resource;
 
     @Inject
-    public NewGroovyFileAction(ResourceProvider resourceProvider,
+    public NewGroovyFileAction(AppContext appContext,
                                EditorTutorialResource resource,
                                SelectionAgent selectionAgent,
-                               EditorAgent editorAgent) {
+                               EditorAgent editorAgent,
+                               ProjectServiceClient projectServiceClient,
+                               EventBus eventBus) {
         super("Groovy file",
               "Creates new Groovy file",
               resource.groovyFile(),
               null,
-              resourceProvider,
+              appContext,
               selectionAgent,
-              editorAgent);
+              editorAgent,
+              projectServiceClient,
+              eventBus);
         this.resource = resource;
     }
 

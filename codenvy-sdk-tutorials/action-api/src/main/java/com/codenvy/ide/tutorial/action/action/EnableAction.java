@@ -10,8 +10,8 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.action.action;
 
-import com.codenvy.ide.api.ui.action.Action;
-import com.codenvy.ide.api.ui.action.ActionEvent;
+import com.codenvy.ide.api.action.Action;
+import com.codenvy.ide.api.action.ActionEvent;
 import com.codenvy.ide.tutorial.action.ActionTutorialResources;
 import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;

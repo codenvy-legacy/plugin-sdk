@@ -11,7 +11,7 @@
 package com.codenvy.ide.tutorial.theme;
 
 import com.codenvy.ide.api.extension.ExtensionGinModule;
-import com.codenvy.ide.api.ui.theme.Theme;
+import com.codenvy.ide.api.theme.Theme;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.inject.client.multibindings.GinMultibinder;
 

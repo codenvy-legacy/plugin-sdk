@@ -10,21 +10,21 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.editor;
 
+import com.codenvy.ide.api.action.ActionManager;
+import com.codenvy.ide.api.action.DefaultActionGroup;
 import com.codenvy.ide.api.editor.EditorRegistry;
 import com.codenvy.ide.api.extension.Extension;
 import com.codenvy.ide.api.filetypes.FileType;
 import com.codenvy.ide.api.filetypes.FileTypeRegistry;
-import com.codenvy.ide.api.ui.action.ActionManager;
-import com.codenvy.ide.api.ui.action.DefaultActionGroup;
-import com.codenvy.ide.api.ui.workspace.WorkspaceAgent;
+import com.codenvy.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.editor.editor.GroovyEditorProvider;
 import com.codenvy.ide.tutorial.editor.part.TutorialHowToPresenter;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import static com.codenvy.ide.api.ui.action.IdeActions.GROUP_FILE_NEW;
-import static com.codenvy.ide.api.ui.workspace.PartStackType.EDITING;
+import static com.codenvy.ide.api.action.IdeActions.GROUP_FILE_NEW;
+import static com.codenvy.ide.api.parts.PartStackType.EDITING;
 import static com.google.gwt.core.client.ScriptInjector.TOP_WINDOW;
 
 /** Extension used to demonstrate the Editor API. */

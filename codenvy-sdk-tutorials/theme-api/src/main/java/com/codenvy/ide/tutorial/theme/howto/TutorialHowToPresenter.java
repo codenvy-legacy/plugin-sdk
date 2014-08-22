@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.theme.howto;
 
-import com.codenvy.ide.api.ui.workspace.AbstractPartPresenter;
+import com.codenvy.ide.api.parts.AbstractPartPresenter;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;

@@ -10,8 +10,8 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.wizard.inject;
 
-import com.codenvy.ide.api.ui.wizard.DefaultWizard;
-import com.codenvy.ide.api.ui.wizard.DefaultWizardFactory;
+import com.codenvy.ide.api.wizard.DefaultWizard;
+import com.codenvy.ide.api.wizard.DefaultWizardFactory;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 

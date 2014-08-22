@@ -16,8 +16,8 @@ package com.codenvy.ide.ext.logger.action;
  */
 
 import com.codenvy.api.analytics.logger.AnalyticsEventLogger;
-import com.codenvy.ide.api.ui.action.Action;
-import com.codenvy.ide.api.ui.action.ActionEvent;
+import com.codenvy.ide.api.action.Action;
+import com.codenvy.ide.api.action.ActionEvent;
 import com.codenvy.ide.ext.logger.AnalyticsEventLoggerExtension;
 import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
