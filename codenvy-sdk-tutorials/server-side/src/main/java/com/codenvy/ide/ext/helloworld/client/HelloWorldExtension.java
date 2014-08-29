@@ -17,7 +17,7 @@ package com.codenvy.ide.ext.helloworld.client;
  */
 import com.codenvy.ide.api.extension.Extension;
 import com.codenvy.ide.api.action.ActionManager;
-import com.codenvy.ide.api.action.Constraints;
+import com.codenvy.ide.api.constraints.Constraints;
 import com.codenvy.ide.api.action.DefaultActionGroup;
 import com.codenvy.ide.api.action.IdeActions;
 import com.codenvy.ide.ext.helloworld.client.action.HelloWorldAction;
