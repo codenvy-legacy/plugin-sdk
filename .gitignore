@@ -17,10 +17,7 @@
 *.sar
 *.class
 
-#GWT
-exo-ide-client/tomcat/
-
-# Maven 
+# Maven
 target/
 
 # IntelliJ project files 
