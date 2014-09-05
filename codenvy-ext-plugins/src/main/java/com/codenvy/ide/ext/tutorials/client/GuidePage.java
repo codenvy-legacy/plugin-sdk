@@ -51,7 +51,7 @@ public class GuidePage extends AbstractPartPresenter {
     public void go(final AcceptsOneWidget container) {
         CurrentProject activeProject = appContext.getCurrentProject();
         if (activeProject != null) {
-            projectServiceClient.getFileContent(activeProject.getProjectDescription().getPath() + '/' + DEFAULT_GUIDE_FILE_NAME,
+            projectServiceClient.getFileContent(activeProject.getRootProject().getPath() + '/' + DEFAULT_GUIDE_FILE_NAME,
                                                 new AsyncRequestCallback<String>(new StringUnmarshaller()) {
                                                     @Override
                                                     protected void onSuccess(String result) {
