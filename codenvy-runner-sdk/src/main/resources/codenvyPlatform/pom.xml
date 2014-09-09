@@ -208,16 +208,9 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
                 <configuration>
-                    <packagingIncludes>WEB-INF/lib/codenvy-commons-servlet-*.jar,
-                        WEB-INF/lib/codenvy-commons-env-*.jar,
-                        WEB-INF/lib/codenvy-commons-servlet-*.jar,
-                        WEB-INF/lib/codenvy-commons-lang-*.jar,
-                        WEB-INF/lib/codenvy-ide-env-dummy-*.jar,
-                        WEB-INF/classes/com/codenvy/ide/servlet/*,
-                        WEB-INF/classes/META-INF/,
+                    <packagingIncludes>WEB-INF/web.xml,
                         _app/**,
-                        IDE.jsp
-                    </packagingIncludes>
+                        IDE.jsp</packagingIncludes>
                 </configuration>
             </plugin>
             <plugin>

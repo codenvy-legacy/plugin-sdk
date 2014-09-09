@@ -10,8 +10,6 @@
       Codenvy, S.A. - initial API and implementation
 
 --%>
-<%@ page import="com.codenvy.commons.env.EnvironmentContext" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,9 +31,9 @@
 
         window.IDE.config = {
 
-            "workspaceName": <%= EnvironmentContext.getCurrent().getWorkspaceName() == null ? null : "\"" + EnvironmentContext.getCurrent().getWorkspaceName() + "\"" %>,
+            "workspaceName": "<%= pageContext.getServletContext().getInitParameter("ws-name") %>",
 
-            "workspaceId": <%= EnvironmentContext.getCurrent().getWorkspaceId() == null ? null : "\"" + EnvironmentContext.getCurrent().getWorkspaceId() + "\"" %>,
+            "workspaceId": "<%= pageContext.getServletContext().getInitParameter("ws-id") %>",
 
             "projectName": window.location.pathname.split("/")[3] ? window.location.pathname.split("/")[3] : null,
 

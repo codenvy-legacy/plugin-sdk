@@ -12,5 +12,5 @@
 
 -->
 <!-- Set reloadable in order to allow updating server-side code of launched Codenvy Extension. -->
-<Context reloadable="true">
+<Context allowCasualMultipartParsing="true" reloadable="true">
 </Context>
