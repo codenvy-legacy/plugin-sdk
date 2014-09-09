@@ -10,83 +10,140 @@
  *******************************************************************************/
 package com.codenvy.ide.env;
 
+import com.codenvy.api.core.NotFoundException;
+import com.codenvy.api.core.ServerException;
+import com.codenvy.api.user.server.dao.UserDao;
 import com.codenvy.commons.env.EnvironmentContext;
 import com.codenvy.commons.user.User;
 import com.codenvy.commons.user.UserImpl;
 
-import javax.servlet.*;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Set up environment variable. Only for local packaging with single workspace. Don't use it in production packaging.
  *
  * @author andrew00x
  */
+@Singleton
 public class SingleEnvironmentFilter implements Filter {
+    @Inject
+    private UserDao userDao;
+
     private String wsName;
     private String wsId;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
-//        wsName = Constants.WORKSPACE.getName();
-//        wsId = Constants.WORKSPACE.getId();
-
         wsName = filterConfig.getInitParameter("ws-name");
         wsId = filterConfig.getInitParameter("ws-id");
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        final HttpServletRequest httpRequest = (HttpServletRequest)request;
+        HttpSession session = httpRequest.getSession(false);
+        User user = null;
+        if (session != null) {
+            user = (User)session.getAttribute("codenvy_user");
+        }
+        if (user == null) {
+            final String query = httpRequest.getQueryString();
+            String username = null;
+            String password = null;
+            if (query != null) {
+                username = getParameter("username", query);
+                password = getParameter("password", query);
+            }
+            if (username == null) {
+                username = "codenvy@codenvy.com";
+            }
+            com.codenvy.api.user.shared.dto.User daoUser;
+            try {
+                daoUser = userDao.getByAlias(username);
+                if (password != null) {
+                    userDao.authenticate(username, password);
+                }
+            } catch (NotFoundException | ServerException e) {
+                throw new ServletException(e);
+            }
+            final List<String> roles = new LinkedList<>();
+            Collections.addAll(roles, "workspace/admin", "workspace/developer", "system/admin", "system/manager", "user");
+            user = new UserImpl(daoUser.getAliases().get(0), daoUser.getId(), "dummy_token", roles, false);
+            session = httpRequest.getSession();
+            session.setAttribute("codenvy_user", user);
+        }
         final EnvironmentContext env = EnvironmentContext.getCurrent();
-        env.setWorkspaceName(wsName);
-        env.setWorkspaceId(wsId);
-        final User user = getUser((HttpServletRequest)request);
-        env.setUser(user);
         try {
-            chain.doFilter(new HttpServletRequestWrapper((HttpServletRequest)request) {
-                @Override
-                public String getRemoteUser() {
-                    return user.getName();
-                }
-
-                @Override
-                public boolean isUserInRole(String role) {
-                    return user.isMemberOf(role);
-                }
-
-                @Override
-                public Principal getUserPrincipal() {
-                    return new Principal() {
-                        @Override
-                        public String getName() {
-                            return user.getName();
-                        }
-                    };
-                }
-            }, response);
+            env.setWorkspaceName(wsName);
+            env.setWorkspaceId(wsId);
+            env.setUser(user);
+            chain.doFilter(addUserInRequest(httpRequest, user), response);
         } finally {
             EnvironmentContext.reset();
         }
+    }
+
+    private HttpServletRequest addUserInRequest(final HttpServletRequest httpRequest, final User user) {
+        return new HttpServletRequestWrapper(httpRequest) {
+            @Override
+            public String getRemoteUser() {
+                return user.getName();
+            }
+
+            @Override
+            public boolean isUserInRole(String role) {
+                return user.isMemberOf(role);
+            }
+
+            @Override
+            public Principal getUserPrincipal() {
+                return new Principal() {
+                    @Override
+                    public String getName() {
+                        return user.getName();
+                    }
+                };
+            }
+        };
     }
 
     @Override
     public void destroy() {
     }
 
-    protected User getUser(HttpServletRequest httpRequest) {
-
-//        List roles = new ArrayList();
-//        roles.addAll(Arrays.asList("system/admin", "system/manager", "user"));
-//        roles.addAll(Constants.MEMBER.getRoles());
-
-        //return new UserImpl(Constants.USER.getEmail(), Constants.USER.getId(), Constants.TOKEN.getValue(), roles);
-
-        return new UserImpl("Chuck", "codenvy", "dummy_token",
-                            Arrays.asList("workspace/admin", "workspace/developer", "system/admin", "system/manager", "user"), false);
+    private String getParameter(String name, String query) {
+        int start;
+        int length;
+        if (query.startsWith(name + "=")) {
+            start = name.length() + 1;
+        } else {
+            start = query.indexOf("&" + name + "=");
+            if (start > 0) {
+                start += (name.length() + 2);
+            }
+        }
+        if (start >= 0) {
+            length = query.indexOf('&', start);
+            if (length == -1) {
+                length = query.length();
+            }
+            return query.substring(start, length);
+        }
+        return null;
     }
 }
