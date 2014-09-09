@@ -139,6 +139,8 @@ public class ExtensionPagePresenter extends AbstractWizardPage implements Extens
         final ProjectDescriptor projectDescriptorToUpdate = dtoFactory.createDto(ProjectDescriptor.class);
         projectDescriptorToUpdate.withProjectTypeId(wizardContext.getData(ProjectWizard.PROJECT_TYPE).getProjectTypeId());
         projectDescriptorToUpdate.setAttributes(options);
+        projectDescriptorToUpdate.setBuilder("maven");
+        projectDescriptorToUpdate.setRunner("sdk");
         boolean visibility = wizardContext.getData(ProjectWizard.PROJECT_VISIBILITY);
         projectDescriptorToUpdate.setVisibility(visibility ? "public" : "private");
         projectDescriptorToUpdate.setDescription(wizardContext.getData(ProjectWizard.PROJECT_DESCRIPTION));
