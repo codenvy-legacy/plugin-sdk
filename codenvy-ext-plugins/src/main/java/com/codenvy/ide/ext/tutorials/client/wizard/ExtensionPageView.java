@@ -36,4 +36,10 @@ public interface ExtensionPageView extends View<ExtensionPageView.ActionDelegate
     String getArtifactId();
 
     String getVersion();
+
+    void showArtifactIdMissingIndicator(boolean show);
+
+    void showGroupIdMissingIndicator(boolean show);
+
+    void showVersionMissingIndicator(boolean show);
 }

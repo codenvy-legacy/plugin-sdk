@@ -75,7 +75,15 @@ public class ExtensionPagePresenter extends AbstractWizardPage implements Extens
 
     @Override
     public boolean isCompleted() {
-        return !view.getArtifactId().equals("") && !view.getGroupId().equals("") && !view.getVersion().equals("");
+        boolean isArtifactIdCompleted = !view.getArtifactId().equals("");
+        boolean isGroupIdCompleted = !view.getGroupId().equals("");
+        boolean isVersionFieldCompleted = !view.getVersion().equals("");
+        boolean isCompleted = isArtifactIdCompleted && isGroupIdCompleted && isVersionFieldCompleted;
+
+        view.showArtifactIdMissingIndicator(!isArtifactIdCompleted);
+        view.showGroupIdMissingIndicator(!isGroupIdCompleted);
+        view.showVersionMissingIndicator(!isVersionFieldCompleted);
+        return isCompleted;
     }
 
     @Override
