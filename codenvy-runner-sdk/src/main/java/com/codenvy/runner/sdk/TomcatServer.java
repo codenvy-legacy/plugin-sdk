@@ -224,7 +224,7 @@ public class TomcatServer implements ApplicationServer {
             -agentlib:jdwp=transport=$JPDA_TRANSPORT,address=$JPDA_ADDRESS,server=y,suspend=$JPDA_SUSPEND
              */
             export.append(String.format("export JPDA_ADDRESS=%d%n", debugPort));
-            export.append(String.format("export JPDA_TRANSPORT=%s%n", runnerConfiguration.getDebugTransport()));
+            export.append(String.format("export JPDA_TRANSPORT=%s%n", "dt_socket"));
             export.append(String.format("export JPDA_SUSPEND=%s%n", runnerConfiguration.isDebugSuspend() ? "y" : "n"));
         }
         return export.toString();

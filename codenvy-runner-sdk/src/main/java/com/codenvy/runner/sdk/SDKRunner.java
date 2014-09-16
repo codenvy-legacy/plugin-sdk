@@ -15,7 +15,6 @@ import com.codenvy.api.core.rest.shared.dto.Link;
 import com.codenvy.api.core.util.CustomPortService;
 import com.codenvy.api.project.server.ProjectEventService;
 import com.codenvy.api.runner.RunnerException;
-import com.codenvy.api.runner.dto.DebugMode;
 import com.codenvy.api.runner.dto.RunRequest;
 import com.codenvy.api.runner.dto.RunnerEnvironment;
 import com.codenvy.api.runner.internal.ApplicationProcess;
@@ -58,7 +57,6 @@ public class SDKRunner extends Runner {
 
     public static final String IDE_GWT_XML_FILE_NAME    = "IDEPlatform.gwt.xml";
     public static final String DEFAULT_SERVER_NAME      = "Tomcat7";
-    public static final String DEBUG_TRANSPORT_PROTOCOL = "dt_socket";
     /** Rel for code server link. */
     public static final String LINK_REL_CODE_SERVER     = "code server";
     /** Name of configuration parameter that specifies the domain name or IP address of the code server. */
@@ -145,12 +143,9 @@ public class SDKRunner extends Runner {
                 configuration.getLinks().add(DtoFactory.getInstance().createDto(Link.class)
                                                        .withRel(LINK_REL_CODE_SERVER)
                                                        .withHref(String.format("%s:%d", codeServerAddress, codeServerPort)));
-                final DebugMode debugMode = request.getDebugMode();
-                if (debugMode != null && debugMode.getMode() != null) {
+                if (request.isInDebugMode()) {
                     configuration.setDebugHost(hostName);
                     configuration.setDebugPort(portService.acquire());
-                    configuration.setDebugTransport(DEBUG_TRANSPORT_PROTOCOL);
-                    configuration.setDebugSuspend("suspend".equals(debugMode.getMode()));
                 }
                 return configuration;
             }
