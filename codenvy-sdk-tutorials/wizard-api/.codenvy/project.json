@@ -1,4 +1,4 @@
-{"type": "codenvy_tutorial",
+{"projectTypeId": "codenvy_tutorial",
     "runner" : "sdk",
     "builder" : "maven",
     "properties": [

@@ -1,4 +1,4 @@
-{"type": "codenvy_extension",
+{"projectTypeId": "codenvy_extension",
     "runner": "sdk",
     "builder": "maven",
     "properties": [
