@@ -72,7 +72,7 @@ public class SingleEnvironmentFilter implements Filter {
             if (username == null) {
                 username = "codenvy@codenvy.com";
             }
-            com.codenvy.api.user.shared.dto.User daoUser;
+            com.codenvy.api.user.server.dao.User daoUser;
             try {
                 daoUser = userDao.getByAlias(username);
                 if (password != null) {
