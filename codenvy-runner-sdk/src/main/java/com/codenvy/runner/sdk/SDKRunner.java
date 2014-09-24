@@ -98,6 +98,7 @@ public class SDKRunner extends Runner {
         for (ApplicationServer server : appServers) {
             final RunnerEnvironment runnerEnvironment = dtoFactory.createDto(RunnerEnvironment.class)
                                                                   .withId(server.getName())
+                                                                  .withDisplayName(server.getName())
                                                                   .withDescription(server.getDescription())
                                                                   .withIsDefault(DEFAULT_SERVER_NAME.equals(server.getName()));
             this.environments.put(runnerEnvironment.getId(), runnerEnvironment);
