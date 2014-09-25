@@ -25,6 +25,7 @@ import com.codenvy.api.user.server.UserService;
 import com.codenvy.api.workspace.server.WorkspaceService;
 import com.codenvy.ide.everrest.CodenvyAsynchronousJobPool;
 import com.codenvy.inject.DynaModule;
+import com.codenvy.vfs.impl.fs.LocalFileSystemRegistryPlugin;
 import com.google.inject.AbstractModule;
 
 import org.everrest.core.impl.async.AsynchronousJobPool;
@@ -37,6 +38,8 @@ public class ApiModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(WorkspaceService.class);
+
+        bind(LocalFileSystemRegistryPlugin.class);
 
         bind(BuilderSelectionStrategy.class).toInstance(new LastInUseBuilderSelectionStrategy());
         bind(BuilderService.class);
