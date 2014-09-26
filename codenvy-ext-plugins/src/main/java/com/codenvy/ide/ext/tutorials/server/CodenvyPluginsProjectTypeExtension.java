@@ -31,16 +31,16 @@ import java.util.Map;
 
 /** @author Artem Zatsarynnyy */
 @Singleton
-public class CodenvyPluginProjectTypeExtension implements ProjectTypeExtension {
-    private static final Logger LOG = LoggerFactory.getLogger(CodenvyPluginProjectTypeExtension.class);
+public class CodenvyPluginsProjectTypeExtension implements ProjectTypeExtension {
+    private static final Logger LOG = LoggerFactory.getLogger(CodenvyPluginsProjectTypeExtension.class);
     private final ProjectTemplateDescriptionLoader projectTemplateDescriptionLoader;
     private final String                           baseUrl;
     private final ProjectType                      projectType;
 
     @Inject
-    public CodenvyPluginProjectTypeExtension(@Named("extension-url") String baseUrl,
-                                             ProjectTemplateDescriptionLoader projectTemplateDescriptionLoader,
-                                             ProjectTypeDescriptionRegistry registry) {
+    public CodenvyPluginsProjectTypeExtension(@Named("extension-url") String baseUrl,
+                                              ProjectTemplateDescriptionLoader projectTemplateDescriptionLoader,
+                                              ProjectTypeDescriptionRegistry registry) {
         this.baseUrl = baseUrl;
         this.projectTemplateDescriptionLoader = projectTemplateDescriptionLoader;
         projectType = new ProjectType(Constants.CODENVY_PLUGIN_ID,

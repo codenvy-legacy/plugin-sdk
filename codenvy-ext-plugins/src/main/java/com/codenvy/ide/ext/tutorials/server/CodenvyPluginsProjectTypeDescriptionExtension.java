@@ -21,22 +21,22 @@ import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * {@link ProjectTypeDescriptionExtension} to register project types.
- *
- * @author Artem Zatsarynnyy
- */
+/** @author Artem Zatsarynnyy */
 @Singleton
-public class CodenvyTutorialProjectTypeDescriptionExtension implements ProjectTypeDescriptionExtension {
+public class CodenvyPluginsProjectTypeDescriptionExtension implements ProjectTypeDescriptionExtension {
     @Inject
-    public CodenvyTutorialProjectTypeDescriptionExtension(ProjectTypeDescriptionRegistry registry) {
+    public CodenvyPluginsProjectTypeDescriptionExtension(ProjectTypeDescriptionRegistry registry) {
         registry.registerDescription(this);
     }
 
     @Override
     public List<ProjectType> getProjectTypes() {
-        final List<ProjectType> list = new ArrayList<>(1);
-        list.add(new ProjectType(Constants.TUTORIAL_ID, Constants.TUTORIAL_NAME,Constants.CODENVY_TUTORIAL_CATEGORY));
+        final List<ProjectType> list = new ArrayList<>(2);
+        list.add(new ProjectType(com.codenvy.ide.Constants.CODENVY_PLUGIN_ID,
+                                 com.codenvy.ide.Constants.CODENVY_PLUGIN_NAME,
+                                 com.codenvy.ide.Constants.CODENVY_CATEGORY));
+
+        list.add(new ProjectType(Constants.TUTORIAL_ID, Constants.TUTORIAL_NAME, Constants.CODENVY_TUTORIAL_CATEGORY));
         return list;
     }
 
