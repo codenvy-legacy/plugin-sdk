@@ -27,9 +27,9 @@ import java.util.List;
  * @author Artem Zatsarynnyy
  */
 @Singleton
-public class ProjectTypeDescriptionsExtension implements ProjectTypeDescriptionExtension {
+public class CodenvyTutorialProjectTypeDescriptionExtension implements ProjectTypeDescriptionExtension {
     @Inject
-    public ProjectTypeDescriptionsExtension(ProjectTypeDescriptionRegistry registry) {
+    public CodenvyTutorialProjectTypeDescriptionExtension(ProjectTypeDescriptionRegistry registry) {
         registry.registerDescription(this);
     }
 
@@ -51,6 +51,4 @@ public class ProjectTypeDescriptionsExtension implements ProjectTypeDescriptionE
         list.add(new AttributeDescription(Constants.RUNNER_NAME));
         return list;
     }
-
-
 }

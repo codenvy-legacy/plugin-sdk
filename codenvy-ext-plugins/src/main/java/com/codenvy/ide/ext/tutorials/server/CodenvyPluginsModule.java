@@ -18,7 +18,7 @@ import com.google.inject.AbstractModule;
 public class CodenvyPluginsModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(ProjectTypeDescriptionsExtension.class);
+        bind(CodenvyTutorialProjectTypeDescriptionExtension.class);
         bind(CodenvyPluginProjectTypeDescriptionExtension.class);
         bind(CodenvyPluginProjectTypeExtension.class);
     }

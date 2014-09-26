@@ -16,12 +16,14 @@ import com.codenvy.ide.api.extension.Extension;
 import com.codenvy.ide.api.icon.Icon;
 import com.codenvy.ide.api.icon.IconRegistry;
 import com.codenvy.ide.api.notification.NotificationManager;
+import com.codenvy.ide.api.projecttree.TreeStructureProviderRegistry;
 import com.codenvy.ide.api.projecttype.wizard.ProjectTypeWizardRegistry;
 import com.codenvy.ide.api.projecttype.wizard.ProjectWizard;
 import com.codenvy.ide.ext.tutorials.client.action.ShowTutorialGuideAction;
 import com.codenvy.ide.ext.tutorials.client.action.UpdateAction;
 import com.codenvy.ide.ext.tutorials.client.wizard.ExtensionPagePresenter;
 import com.codenvy.ide.ext.tutorials.shared.Constants;
+import com.codenvy.ide.extension.maven.client.projecttree.MavenProjectTreeStructureProvider;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -49,13 +51,19 @@ public class TutorialsExtension {
                               ProjectTypeWizardRegistry wizardRegistry,
                               NotificationManager notificationManager,
                               IconRegistry iconRegistry,
-                              Provider<ExtensionPagePresenter> extensionPagePresenter) {
+                              Provider<ExtensionPagePresenter> extensionPagePresenter,
+                              TreeStructureProviderRegistry treeStructureProviderRegistry,
+                              MavenProjectTreeStructureProvider mavenProjectTreeStructureProvider) {
         resources.tutorialsCss().ensureInjected();
 
         // register Icons for samples and codenvy projecttypes
         iconRegistry.registerIcon(new Icon("samples.samples.category.icon", resources.samplesCategorySamples()));
         iconRegistry.registerIcon(new Icon("samples-helloworld.samples.category.icon", resources.samplesCategorySamples()));
         iconRegistry.registerIcon(new Icon("codenvy.samples.category.icon", resources.samplesCategoryCodenvy()));
+
+        // use Maven project tree for 'Codenvy Extension' and 'Tutorial' project types
+        treeStructureProviderRegistry.registerProvider(Constants.TUTORIAL_ID, mavenProjectTreeStructureProvider);
+        treeStructureProviderRegistry.registerProvider(com.codenvy.ide.Constants.CODENVY_PLUGIN_ID, mavenProjectTreeStructureProvider);
 
         // register actions
         DefaultActionGroup windowMenuActionGroup = (DefaultActionGroup)actionManager.getAction(GROUP_WINDOW);
