@@ -16,7 +16,7 @@ import com.codenvy.api.project.shared.Attribute;
 import com.codenvy.api.project.shared.ProjectTemplateDescription;
 import com.codenvy.api.project.shared.ProjectType;
 import com.codenvy.ide.Constants;
-import com.codenvy.ide.server.ProjectTemplateDescriptionLoader;
+import com.codenvy.api.project.server.ProjectTemplateDescriptionLoader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
