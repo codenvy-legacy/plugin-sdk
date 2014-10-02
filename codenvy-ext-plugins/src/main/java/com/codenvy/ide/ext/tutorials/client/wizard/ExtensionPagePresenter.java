@@ -17,7 +17,7 @@ import com.codenvy.ide.api.projecttype.wizard.ProjectWizard;
 import com.codenvy.ide.api.wizard.AbstractWizardPage;
 import com.codenvy.ide.collections.Jso;
 import com.codenvy.ide.dto.DtoFactory;
-import com.codenvy.ide.extension.maven.client.wizard.MavenPomReaderClient;
+import com.codenvy.ide.extension.maven.client.wizard.MavenPomServiceClient;
 import com.codenvy.ide.extension.maven.shared.MavenAttributes;
 import com.codenvy.ide.rest.AsyncRequestCallback;
 import com.codenvy.ide.rest.DtoUnmarshallerFactory;
@@ -47,13 +47,13 @@ public class ExtensionPagePresenter extends AbstractWizardPage implements Extens
     private ProjectServiceClient   projectServiceClient;
     private DtoFactory             dtoFactory;
     private DtoUnmarshallerFactory dtoUnmarshallerFactory;
-    private EventBus eventBus;
-    private MavenPomReaderClient pomReaderClient;
+    private EventBus               eventBus;
+    private MavenPomServiceClient  pomReaderClient;
 
     @Inject
     public ExtensionPagePresenter(ExtensionPageView view,
                                   ProjectServiceClient projectServiceClient,
-                                  MavenPomReaderClient pomReaderClient,
+                                  MavenPomServiceClient pomReaderClient,
                                   DtoFactory dtoFactory,
                                   DtoUnmarshallerFactory dtoUnmarshallerFactory,
                                   EventBus eventBus) {
