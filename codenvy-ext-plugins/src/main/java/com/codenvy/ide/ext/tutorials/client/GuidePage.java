@@ -51,13 +51,14 @@ public class GuidePage extends AbstractPartPresenter {
     public void go(final AcceptsOneWidget container) {
         CurrentProject activeProject = appContext.getCurrentProject();
         if (activeProject != null) {
+            final HTMLPanel htmlPanel = new HTMLPanel("");
+            container.setWidget(htmlPanel);
             projectServiceClient.getFileContent(activeProject.getRootProject().getPath() + '/' + DEFAULT_GUIDE_FILE_NAME,
                                                 new AsyncRequestCallback<String>(new StringUnmarshaller()) {
                                                     @Override
                                                     protected void onSuccess(String result) {
-                                                        HTMLPanel htmlPanel = new HTMLPanel(result);
+                                                        htmlPanel.getElement().setInnerHTML(result);
                                                         htmlPanel.setStyleName(resources.tutorialsCss().scrollPanel());
-                                                        container.setWidget(htmlPanel);
                                                     }
 
                                                     @Override
