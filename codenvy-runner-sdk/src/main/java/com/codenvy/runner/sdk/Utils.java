@@ -11,9 +11,10 @@
 package com.codenvy.runner.sdk;
 
 import com.codenvy.api.core.rest.shared.dto.Link;
+import com.codenvy.api.core.util.LineConsumer;
+import com.codenvy.api.core.util.ListLineConsumer;
 import com.codenvy.api.core.util.DownloadPlugin;
 import com.codenvy.api.core.util.HttpDownloadPlugin;
-import com.codenvy.api.core.util.LineConsumer;
 import com.codenvy.api.core.util.ProcessUtil;
 import com.codenvy.api.core.util.ValueHolder;
 import com.codenvy.api.project.server.Constants;
@@ -105,15 +106,15 @@ class Utils {
      *         name pattern of the artifact to return
      * @return {@link java.util.zip.ZipFile} that represents a built artifact
      */
-    static ZipFile buildProjectFromSources(Path sourcesPath, String artifactNamePattern) throws Exception {
+    static ZipFile buildProjectFromSources(Path sourcesPath, String artifactNamePattern) throws IOException, InterruptedException {
         final String[] command = new String[]{MavenUtils.getMavenExecCommand(), "clean", "package"};
-        ProcessBuilder processBuilder = new ProcessBuilder(command).directory(sourcesPath.toFile());
+        ProcessBuilder processBuilder = new ProcessBuilder(command).directory(sourcesPath.toFile()).redirectErrorStream(true);
         Process process = processBuilder.start();
-        ProcessLineConsumer consumer = new ProcessLineConsumer();
-        ProcessUtil.process(process, consumer, consumer);
+        ListLineConsumer consumer = new ListLineConsumer();
+        ProcessUtil.process(process, consumer, LineConsumer.DEV_NULL);
         process.waitFor();
         if (process.exitValue() != 0) {
-            throw new Exception(consumer.getOutput().toString());
+            throw new IOException(consumer.getText());
         }
         return new ZipFile(IoUtil.findFile(artifactNamePattern, sourcesPath.resolve("target").toFile()));
     }
@@ -169,24 +170,6 @@ class Utils {
             return new ExtensionDescriptor(gwtModuleName, MavenUtils.getGroupId(pom), pom.getArtifactId(), MavenUtils.getVersion(pom));
         } finally {
             zipFile.close();
-        }
-    }
-
-    private static class ProcessLineConsumer implements LineConsumer {
-        final StringBuilder output = new StringBuilder();
-
-        @Override
-        public void writeLine(String line) throws IOException {
-            output.append('\n').append(line);
-        }
-
-        @Override
-        public void close() throws IOException {
-            //nothing to close
-        }
-
-        StringBuilder getOutput() {
-            return output;
         }
     }
 
