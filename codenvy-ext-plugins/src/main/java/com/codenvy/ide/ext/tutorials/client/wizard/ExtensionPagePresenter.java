@@ -11,7 +11,9 @@
 package com.codenvy.ide.ext.tutorials.client.wizard;
 
 import com.codenvy.api.project.gwt.client.ProjectServiceClient;
+import com.codenvy.api.project.shared.dto.BuildersDescriptor;
 import com.codenvy.api.project.shared.dto.ProjectDescriptor;
+import com.codenvy.api.project.shared.dto.RunnersDescriptor;
 import com.codenvy.ide.api.event.OpenProjectEvent;
 import com.codenvy.ide.api.projecttype.wizard.ProjectWizard;
 import com.codenvy.ide.api.wizard.AbstractWizardPage;
@@ -145,10 +147,18 @@ public class ExtensionPagePresenter extends AbstractWizardPage implements Extens
         options.put(MavenAttributes.PACKAGING, Arrays.asList("jar"));
 
         final ProjectDescriptor projectDescriptorToUpdate = dtoFactory.createDto(ProjectDescriptor.class);
-        projectDescriptorToUpdate.withProjectTypeId(wizardContext.getData(ProjectWizard.PROJECT_TYPE).getProjectTypeId());
+        projectDescriptorToUpdate.withType(wizardContext.getData(ProjectWizard.PROJECT_TYPE).getType());
         projectDescriptorToUpdate.setAttributes(options);
-        projectDescriptorToUpdate.setBuilder("maven");
-        projectDescriptorToUpdate.setRunner("sdk");
+        BuildersDescriptor builders = projectDescriptorToUpdate.getBuilders();
+        if (builders == null) {
+            projectDescriptorToUpdate.setBuilders(builders = dtoFactory.createDto(BuildersDescriptor.class));
+        }
+        builders.setDefault("maven");
+        RunnersDescriptor runners = projectDescriptorToUpdate.getRunners();
+        if (runners == null) {
+            projectDescriptorToUpdate.setRunners(runners = dtoFactory.createDto(RunnersDescriptor.class));
+        }
+        runners.setDefault("sdk");
         boolean visibility = wizardContext.getData(ProjectWizard.PROJECT_VISIBILITY);
         projectDescriptorToUpdate.setVisibility(visibility ? "public" : "private");
         projectDescriptorToUpdate.setDescription(wizardContext.getData(ProjectWizard.PROJECT_DESCRIPTION));

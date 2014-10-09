@@ -12,8 +12,8 @@ package com.codenvy.ide.ext.tutorials.server;
 
 import com.codenvy.api.project.server.ProjectTypeDescriptionExtension;
 import com.codenvy.api.project.server.ProjectTypeDescriptionRegistry;
-import com.codenvy.api.project.shared.AttributeDescription;
-import com.codenvy.api.project.shared.ProjectType;
+import com.codenvy.api.project.server.AttributeDescription;
+import com.codenvy.api.project.server.ProjectType;
 import com.codenvy.ide.ext.tutorials.shared.Constants;
 
 import javax.inject.Inject;
@@ -42,13 +42,11 @@ public class CodenvyPluginsProjectTypeDescriptionExtension implements ProjectTyp
 
     @Override
     public List<AttributeDescription> getAttributeDescriptions() {
-        final List<AttributeDescription> list = new ArrayList<>(6);
+        final List<AttributeDescription> list = new ArrayList<>(4);
         list.add(new AttributeDescription(Constants.LANGUAGE));
         list.add(new AttributeDescription(Constants.LANGUAGE_VERSION));
         list.add(new AttributeDescription(Constants.FRAMEWORK));
-        list.add(new AttributeDescription(Constants.BUILDER_NAME));
         list.add(new AttributeDescription(Constants.BUILDER_MAVEN_SOURCE_FOLDERS));
-        list.add(new AttributeDescription(Constants.RUNNER_NAME));
         return list;
     }
 }

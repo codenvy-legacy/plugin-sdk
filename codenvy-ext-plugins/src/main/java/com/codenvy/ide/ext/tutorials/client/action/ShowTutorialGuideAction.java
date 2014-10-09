@@ -58,7 +58,7 @@ public class ShowTutorialGuideAction extends Action {
     public void update(ActionEvent e) {
         CurrentProject activeProject = appContext.getCurrentProject();
         if (activeProject != null) {
-            e.getPresentation().setEnabledAndVisible(activeProject.getRootProject().getProjectTypeId().equals(Constants.TUTORIAL_ID));
+            e.getPresentation().setEnabledAndVisible(activeProject.getRootProject().getType().equals(Constants.TUTORIAL_ID));
         } else {
             e.getPresentation().setEnabledAndVisible(false);
         }

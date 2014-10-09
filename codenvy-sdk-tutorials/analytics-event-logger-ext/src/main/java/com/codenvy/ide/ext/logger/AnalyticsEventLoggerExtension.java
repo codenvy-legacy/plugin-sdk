@@ -26,9 +26,9 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 /**
- * @Singleton is required in case the instance is triggered several times this extension will be initialized several
- * times as well.
- * @Extension lets us know this is an extension and code injected in it will be executed when launched
+ * &#0064;Singleton is required in case the instance is triggered several times this extension will be initialized several times as well.
+ * <p/>
+ * &#0064;Extension lets us know this is an extension and code injected in it will be executed when launched.
  */
 @Singleton
 @Extension(title = "Analytics Event Logger", version = "1.0.0")

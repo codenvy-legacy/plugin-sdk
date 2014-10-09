@@ -10,11 +10,13 @@
  *******************************************************************************/
 package com.codenvy.ide.ext.tutorials.server;
 
+import com.codenvy.api.project.server.Builders;
 import com.codenvy.api.project.server.ProjectTypeDescriptionRegistry;
 import com.codenvy.api.project.server.ProjectTypeExtension;
-import com.codenvy.api.project.shared.Attribute;
-import com.codenvy.api.project.shared.ProjectTemplateDescription;
-import com.codenvy.api.project.shared.ProjectType;
+import com.codenvy.api.project.server.Attribute;
+import com.codenvy.api.project.server.ProjectTemplateDescription;
+import com.codenvy.api.project.server.ProjectType;
+import com.codenvy.api.project.server.Runners;
 import com.codenvy.ide.ext.tutorials.shared.Constants;
 import com.codenvy.api.project.server.ProjectTemplateDescriptionLoader;
 
@@ -39,11 +41,7 @@ public class CodenvyTutorialsProjectTypeExtension implements ProjectTypeExtensio
     public CodenvyTutorialsProjectTypeExtension(ProjectTemplateDescriptionLoader projectTemplateDescriptionLoader,
                                                 ProjectTypeDescriptionRegistry registry) {
         this.projectTemplateDescriptionLoader = projectTemplateDescriptionLoader;
-        projectType = new ProjectType(Constants.TUTORIAL_ID,
-                                      Constants.TUTORIAL_NAME,
-                                      Constants.CODENVY_TUTORIAL_CATEGORY,
-                                      "maven",
-                                      "sdk");
+        projectType = new ProjectType(Constants.TUTORIAL_ID, Constants.TUTORIAL_NAME, Constants.CODENVY_TUTORIAL_CATEGORY);
         registry.registerProjectType(this);
     }
 
@@ -58,6 +56,16 @@ public class CodenvyTutorialsProjectTypeExtension implements ProjectTypeExtensio
         list.add(new Attribute(Constants.LANGUAGE, "java"));
         list.add(new Attribute(Constants.FRAMEWORK, "codenvy_sdk"));
         return list;
+    }
+
+    @Override
+    public Builders getBuilders() {
+        return new Builders("maven");
+    }
+
+    @Override
+    public Runners getRunners() {
+        return new Runners("sdk");
     }
 
     @Override
