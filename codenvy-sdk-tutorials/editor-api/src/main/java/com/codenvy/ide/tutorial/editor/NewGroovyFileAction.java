@@ -15,6 +15,7 @@ import com.codenvy.ide.api.app.AppContext;
 import com.codenvy.ide.api.editor.EditorAgent;
 import com.codenvy.ide.api.selection.SelectionAgent;
 import com.codenvy.ide.newresource.DefaultNewResourceAction;
+import com.codenvy.ide.rest.DtoUnmarshallerFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.web.bindery.event.shared.EventBus;
@@ -35,7 +36,8 @@ public class NewGroovyFileAction extends DefaultNewResourceAction {
                                SelectionAgent selectionAgent,
                                EditorAgent editorAgent,
                                ProjectServiceClient projectServiceClient,
-                               EventBus eventBus) {
+                               EventBus eventBus,
+                               DtoUnmarshallerFactory unmarshallerFactory) {
         super("Groovy file",
               "Creates new Groovy file",
               resource.groovyFile(),
@@ -44,7 +46,8 @@ public class NewGroovyFileAction extends DefaultNewResourceAction {
               selectionAgent,
               editorAgent,
               projectServiceClient,
-              eventBus);
+              eventBus,
+              unmarshallerFactory);
         this.resource = resource;
     }
 
