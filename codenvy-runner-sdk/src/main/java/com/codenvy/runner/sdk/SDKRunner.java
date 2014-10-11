@@ -14,9 +14,11 @@ import com.codenvy.api.core.notification.EventService;
 import com.codenvy.api.core.rest.shared.dto.Link;
 import com.codenvy.api.core.util.CustomPortService;
 import com.codenvy.api.project.server.ProjectEventService;
+import com.codenvy.api.project.shared.EnvironmentId;
+import com.codenvy.api.project.shared.dto.RunnerEnvironment;
+import com.codenvy.api.project.shared.dto.RunnerEnvironmentTree;
 import com.codenvy.api.runner.RunnerException;
 import com.codenvy.api.runner.dto.RunRequest;
-import com.codenvy.api.runner.dto.RunnerEnvironment;
 import com.codenvy.api.runner.internal.ApplicationProcess;
 import com.codenvy.api.runner.internal.Constants;
 import com.codenvy.api.runner.internal.DeploymentSources;
@@ -41,6 +43,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.zip.ZipFile;
@@ -64,7 +68,6 @@ public class SDKRunner extends Runner {
     public static final String HOST_NAME                = "runner.sdk.host_name";
 
     private final Map<String, ApplicationServer> servers;
-    private final Map<String, RunnerEnvironment> environments;
     private final String                         codeServerAddress;
     private final String                         hostName;
     private final CustomPortService              portService;
@@ -93,16 +96,6 @@ public class SDKRunner extends Runner {
         for (ApplicationServer appServer : appServers) {
             servers.put(appServer.getName(), appServer);
         }
-        this.environments = new HashMap<>(servers.size());
-        final DtoFactory dtoFactory = DtoFactory.getInstance();
-        for (ApplicationServer server : appServers) {
-            final RunnerEnvironment runnerEnvironment = dtoFactory.createDto(RunnerEnvironment.class)
-                                                                  .withId(server.getName())
-                                                                  .withDisplayName(server.getName())
-                                                                  .withDescription(server.getDescription())
-                                                                  .withIsDefault(DEFAULT_SERVER_NAME.equals(server.getName()));
-            this.environments.put(runnerEnvironment.getId(), runnerEnvironment);
-        }
     }
 
     @Override
@@ -116,13 +109,20 @@ public class SDKRunner extends Runner {
     }
 
     @Override
-    public Map<String, RunnerEnvironment> getEnvironments() {
-        final Map<String, RunnerEnvironment> copy = new HashMap<>(environments.size());
+    public RunnerEnvironmentTree getEnvironments() {
         final DtoFactory dtoFactory = DtoFactory.getInstance();
-        for (Map.Entry<String, RunnerEnvironment> entry : environments.entrySet()) {
-            copy.put(entry.getKey(), dtoFactory.clone(entry.getValue()));
+        final RunnerEnvironmentTree root = dtoFactory.createDto(RunnerEnvironmentTree.class).withDisplayName(getName());
+        final List<RunnerEnvironment> environments = new LinkedList<>();
+        for (ApplicationServer server : servers.values()) {
+            final String id = new EnvironmentId(EnvironmentId.Scope.system, getName(), server.getName()).toString();
+            final RunnerEnvironment runnerEnvironment = dtoFactory.createDto(RunnerEnvironment.class)
+                                                                  .withId(id)
+                                                                  .withDescription(server.getDescription())
+                                                                  .withDisplayName(server.getName())
+                                                                  .withDefault(DEFAULT_SERVER_NAME.equals(server.getName()));
+            environments.add(runnerEnvironment);
         }
-        return copy;
+        return root.withEnvironments(environments);
     }
 
     @Override
