@@ -60,7 +60,7 @@ public class SDKRunner extends Runner {
     private static final Logger LOG = LoggerFactory.getLogger(SDKRunner.class);
 
     public static final String IDE_GWT_XML_FILE_NAME    = "IDEPlatform.gwt.xml";
-    public static final String DEFAULT_SERVER_NAME      = "Tomcat7";
+    public static final String DEFAULT_SERVER_NAME      = "tomcat7";
     /** Rel for code server link. */
     public static final String LINK_REL_CODE_SERVER     = "code server";
     /** Name of configuration parameter that specifies the domain name or IP address of the code server. */
@@ -114,13 +114,18 @@ public class SDKRunner extends Runner {
         final RunnerEnvironmentTree root = dtoFactory.createDto(RunnerEnvironmentTree.class).withDisplayName(getName());
         final List<RunnerEnvironment> environments = new LinkedList<>();
         for (ApplicationServer server : servers.values()) {
-            final String id = new EnvironmentId(EnvironmentId.Scope.system, getName(), server.getName()).toString();
+            final String serverName = server.getName();
+            final String id = new EnvironmentId(EnvironmentId.Scope.system, getName(), serverName).toString();
             final RunnerEnvironment runnerEnvironment = dtoFactory.createDto(RunnerEnvironment.class)
                                                                   .withId(id)
                                                                   .withDescription(server.getDescription())
-                                                                  .withDisplayName(server.getName())
-                                                                  .withDefault(DEFAULT_SERVER_NAME.equals(server.getName()));
+                                                                  .withDisplayName(serverName);
             environments.add(runnerEnvironment);
+            if (DEFAULT_SERVER_NAME.equals(serverName)) {
+                // Have a lot templates with runner environment id: system:/java-webapp-default/default. This makes them work.
+                final String defaultId = new EnvironmentId(EnvironmentId.Scope.system, getName(), "default").toString();
+                environments.add(dtoFactory.clone(runnerEnvironment.withId(defaultId)));
+            }
         }
         return root.withEnvironments(environments);
     }
@@ -131,7 +136,13 @@ public class SDKRunner extends Runner {
             @Override
             public RunnerConfiguration createRunnerConfiguration(RunRequest request) throws RunnerException {
                 final String environmentId = request.getEnvironmentId();
-                String server = environmentId == null ? DEFAULT_SERVER_NAME : EnvironmentId.parse(environmentId).getName();
+                final String name = EnvironmentId.parse(environmentId).getName();
+                String server;
+                if (name.equals("default")) {
+                    server = DEFAULT_SERVER_NAME;
+                } else {
+                    server = name;
+                }
                 final int httpPort = portService.acquire();
                 final int codeServerPort = portService.acquire();
                 final SDKRunnerConfiguration configuration =
