@@ -130,12 +130,10 @@ public class SDKRunner extends Runner {
         return new RunnerConfigurationFactory() {
             @Override
             public RunnerConfiguration createRunnerConfiguration(RunRequest request) throws RunnerException {
+                final String environmentId = request.getEnvironmentId();
+                String server = environmentId == null ? DEFAULT_SERVER_NAME : EnvironmentId.parse(environmentId).getName();
                 final int httpPort = portService.acquire();
                 final int codeServerPort = portService.acquire();
-                String server = request.getEnvironmentId();
-                if (server == null) {
-                    server = DEFAULT_SERVER_NAME;
-                }
                 final SDKRunnerConfiguration configuration =
                         new SDKRunnerConfiguration(server, request.getMemorySize(), httpPort, codeServerAddress, codeServerPort, request);
                 configuration.getLinks().add(DtoFactory.getInstance().createDto(Link.class)
