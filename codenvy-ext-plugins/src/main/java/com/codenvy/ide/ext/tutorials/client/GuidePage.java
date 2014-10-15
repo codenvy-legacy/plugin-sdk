@@ -25,6 +25,8 @@ import com.google.inject.Singleton;
 
 import org.vectomatic.dom.svg.ui.SVGResource;
 
+import javax.annotation.Nonnull;
+
 import static com.codenvy.ide.ext.tutorials.client.TutorialsExtension.DEFAULT_GUIDE_FILE_NAME;
 
 /**
@@ -70,6 +72,7 @@ public class GuidePage extends AbstractPartPresenter {
     }
 
     /** {@inheritDoc} */
+    @Nonnull
     @Override
     public String getTitle() {
         return "Tutorial Guide";

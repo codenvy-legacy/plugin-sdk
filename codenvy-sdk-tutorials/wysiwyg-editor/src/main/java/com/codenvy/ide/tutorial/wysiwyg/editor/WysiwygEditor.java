@@ -15,6 +15,8 @@ import com.codenvy.ide.api.editor.AbstractEditorPresenter;
 import com.codenvy.ide.api.editor.EditorInput;
 import com.codenvy.ide.rest.AsyncRequestCallback;
 import com.codenvy.ide.rest.StringUnmarshaller;
+import com.codenvy.ide.ui.dialogs.ask.Ask;
+import com.codenvy.ide.ui.dialogs.ask.AskHandler;
 import com.codenvy.ide.util.loging.Log;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.resources.client.ImageResource;
@@ -24,6 +26,8 @@ import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RichTextArea;
 
 import org.vectomatic.dom.svg.ui.SVGResource;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author <a href="mailto:evidolob@codenvy.com">Evgen Vidolob</a>
@@ -79,6 +83,7 @@ public class WysiwygEditor extends AbstractEditorPresenter {
     }
 
     /** {@inheritDoc} */
+    @Nonnull
     @Override
     public String getTitle() {
         return "WYSIWYG Editor: " + input.getFile().getName();
@@ -100,6 +105,31 @@ public class WysiwygEditor extends AbstractEditorPresenter {
     @Override
     public String getTitleToolTip() {
         return null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onClose(@Nonnull final AsyncCallback<Void> callback) {
+        if (isDirty()) {
+            Ask ask = new Ask("Close", "'" + getEditorInput().getName() + "' has been modified. Save changes?", new AskHandler() {
+                @Override
+                public void onOk() {
+                    doSave();
+                    handleClose();
+                    callback.onSuccess(null);
+                }
+
+                @Override
+                public void onCancel() {
+                    handleClose();
+                    callback.onSuccess(null);
+                }
+            });
+            ask.show();
+        } else {
+            handleClose();
+            callback.onSuccess(null);
+        }
     }
 
     /** {@inheritDoc} */
