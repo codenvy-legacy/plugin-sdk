@@ -1,10 +1,12 @@
-{"projectTypeId": "codenvy_tutorial",
-    "runner" : "sdk",
-    "builder" : "maven",
-    "properties": [
-        {
-            "name": "language.version",
-            "value": ["1.6"]
-        }
-    ]
+{"type": "codenvy_tutorial",
+    "builders": {
+        "default": "maven"
+    },
+    "runners": {
+        "configs": {},
+        "default": "system:/sdk/default"
+    },
+    "attributes": {
+        "language": ["java"]
+    }
 }
