@@ -18,6 +18,8 @@ import com.google.inject.Singleton;
 
 import org.vectomatic.dom.svg.ui.SVGResource;
 
+import javax.annotation.Nonnull;
+
 /**
  * Show information how to use notification tutorial.
  *
@@ -34,6 +36,7 @@ public class TutorialHowToPresenter extends AbstractPartPresenter implements Tut
     }
 
     /** {@inheritDoc} */
+    @Nonnull
     @Override
     public String getTitle() {
         return "WYSIWYG Editor";
