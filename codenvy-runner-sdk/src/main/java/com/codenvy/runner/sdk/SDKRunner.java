@@ -113,8 +113,7 @@ public class SDKRunner extends Runner {
         for (ApplicationServer server : servers.values()) {
             final RunnerEnvironment runnerEnvironment = dtoFactory.createDto(RunnerEnvironment.class)
                                                                   .withId(server.getName())
-                                                                  .withDescription(server.getDescription())
-                                                                  .withDefault(DEFAULT_SERVER_NAME.equals(server.getName()));
+                                                                  .withDescription(server.getDescription());
             environments.add(runnerEnvironment);
         }
         return environments;
@@ -125,13 +124,7 @@ public class SDKRunner extends Runner {
         return new RunnerConfigurationFactory() {
             @Override
             public RunnerConfiguration createRunnerConfiguration(RunRequest request) throws RunnerException {
-                final String envId = request.getEnvironmentId();
-                String server;
-                if (envId == null || envId.equals("default")) {
-                    server = DEFAULT_SERVER_NAME;
-                } else {
-                    server = envId;
-                }
+                final String server = request.getEnvironmentId();
                 final int httpPort = portService.acquire();
                 final int codeServerPort = portService.acquire();
                 final SDKRunnerConfiguration configuration =
@@ -166,8 +159,10 @@ public class SDKRunner extends Runner {
         final Path codeServerWorkDirPath;
         final Utils.ExtensionDescriptor extensionDescriptor;
         try {
-            appDir = Files.createTempDirectory(getDeployDirectory().toPath(), (server.getName() + '_' + getName() + '_')).toFile();
-            codeServerWorkDirPath = Files.createTempDirectory(getDeployDirectory().toPath(), ("codeServer_" + getName() + '_'));
+            appDir = Files.createTempDirectory(getDeployDirectory().toPath(),
+                                               (server.getName() + '_' + getName().replace("/", "."))).toFile();
+            codeServerWorkDirPath = Files.createTempDirectory(getDeployDirectory().toPath(),
+                                                              ("codeServer_" + getName().replace("/", ".")));
             extensionDescriptor = Utils.getExtensionFromJarFile(new ZipFile(toDeploy.getFile()));
         } catch (IOException | IllegalArgumentException e) {
             throw new RunnerException(e);
@@ -229,7 +224,7 @@ public class SDKRunner extends Runner {
         final ZipFile warPath;
         try {
             // prepare Codenvy Platform sources
-            final Path workDirPath = Files.createTempDirectory(getDeployDirectory().toPath(), ("war_" + getName() + '_'));
+            final Path workDirPath = Files.createTempDirectory(getDeployDirectory().toPath(), ("war_" + getName().replace("/", ".")));
             ZipUtils.unzip(Utils.getCodenvyPlatformBinaryDistribution().openStream(), workDirPath.toFile());
 
             // integrate extension to Codenvy Platform
