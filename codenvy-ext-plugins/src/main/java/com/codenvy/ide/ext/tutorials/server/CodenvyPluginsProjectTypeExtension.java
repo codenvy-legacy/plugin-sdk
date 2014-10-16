@@ -69,7 +69,7 @@ public class CodenvyPluginsProjectTypeExtension implements ProjectTypeExtension 
 
     @Override
     public Runners getRunners() {
-        return new Runners("sdk");
+        return new Runners("system:/sdk/tomcat7");
     }
 
     @Override
