@@ -57,9 +57,9 @@ public class TutorialsExtension {
         resources.tutorialsCss().ensureInjected();
 
         // register Icons for samples and codenvy projecttypes
-        iconRegistry.registerIcon(new Icon("samples.samples.category.icon", resources.samplesCategorySamples()));
-        iconRegistry.registerIcon(new Icon("samples-helloworld.samples.category.icon", resources.samplesCategorySamples()));
-        iconRegistry.registerIcon(new Icon("codenvy.samples.category.icon", resources.samplesCategoryCodenvy()));
+        iconRegistry.registerIcon(new Icon("Samples.samples.category.icon", resources.samplesCategorySamples()));
+        iconRegistry.registerIcon(new Icon("Samples - Hello World.samples.category.icon", resources.samplesCategorySamples()));
+        iconRegistry.registerIcon(new Icon("Codenvy.samples.category.icon", resources.samplesCategoryCodenvy()));
 
         // use Maven project tree for 'Codenvy Extension' and 'Tutorial' project types
         treeStructureProviderRegistry.registerProvider(Constants.TUTORIAL_ID, mavenProjectTreeStructureProvider);
