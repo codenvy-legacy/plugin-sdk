@@ -4,7 +4,7 @@
     },
     "runners": {
         "configs": {},
-        "default": "system:/sdk/default"
+        "default": "system:/sdk/tomcat7"
     },
     "attributes": {
         "language": ["java"]
