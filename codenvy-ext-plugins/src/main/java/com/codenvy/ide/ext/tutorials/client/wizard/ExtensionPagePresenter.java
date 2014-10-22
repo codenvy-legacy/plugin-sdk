@@ -113,7 +113,7 @@ public class ExtensionPagePresenter extends AbstractWizardPage implements Extens
                 runners = dtoFactory.createDto(RunnersDescriptor.class);
                 project.setRunners(runners);
             }
-            runners.setDefault("sdk");
+            runners.setDefault("system:/sdk/tomcat7");
 
             if (projectUpdate != null) {
                 List<String> artifactIdAttr = attributes.get(MavenAttributes.ARTIFACT_ID);
