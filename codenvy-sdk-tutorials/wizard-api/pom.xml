@@ -16,7 +16,7 @@
     <parent>
         <artifactId>codenvy-plugin-sdk-parent</artifactId>
         <groupId>com.codenvy.plugin-sdk</groupId>
-        <version>1.1.0</version>
+        <version>1.1.1-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>wizard-api-tutorial</artifactId>
