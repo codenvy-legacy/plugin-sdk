@@ -15,8 +15,9 @@ import com.codenvy.ide.api.editor.AbstractEditorPresenter;
 import com.codenvy.ide.api.editor.EditorInput;
 import com.codenvy.ide.rest.AsyncRequestCallback;
 import com.codenvy.ide.rest.StringUnmarshaller;
-import com.codenvy.ide.ui.dialogs.ask.Ask;
-import com.codenvy.ide.ui.dialogs.ask.AskHandler;
+import com.codenvy.ide.ui.dialogs.CancelCallback;
+import com.codenvy.ide.ui.dialogs.ConfirmCallback;
+import com.codenvy.ide.ui.dialogs.DialogFactory;
 import com.codenvy.ide.util.loging.Log;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.resources.client.ImageResource;
@@ -29,17 +30,16 @@ import org.vectomatic.dom.svg.ui.SVGResource;
 
 import javax.annotation.Nonnull;
 
-/**
- * @author <a href="mailto:evidolob@codenvy.com">Evgen Vidolob</a>
- * @version $Id:
- */
+/** @author Evgen Vidolob */
 public class WysiwygEditor extends AbstractEditorPresenter {
 
-    private ProjectServiceClient projectServiceClient;
-    private RichTextArea textArea;
+    private       ProjectServiceClient projectServiceClient;
+    private final DialogFactory        dialogFactory;
+    private       RichTextArea         textArea;
 
-    public WysiwygEditor(ProjectServiceClient projectServiceClient) {
+    public WysiwygEditor(ProjectServiceClient projectServiceClient, DialogFactory dialogFactory) {
         this.projectServiceClient = projectServiceClient;
+        this.dialogFactory = dialogFactory;
     }
 
     /** {@inheritDoc} */
@@ -68,7 +68,6 @@ public class WysiwygEditor extends AbstractEditorPresenter {
 
     @Override
     public void doSave(AsyncCallback<EditorInput> callback) {
-
     }
 
     /** {@inheritDoc} */
@@ -111,21 +110,22 @@ public class WysiwygEditor extends AbstractEditorPresenter {
     @Override
     public void onClose(@Nonnull final AsyncCallback<Void> callback) {
         if (isDirty()) {
-            Ask ask = new Ask("Close", "'" + getEditorInput().getName() + "' has been modified. Save changes?", new AskHandler() {
-                @Override
-                public void onOk() {
-                    doSave();
-                    handleClose();
-                    callback.onSuccess(null);
-                }
-
-                @Override
-                public void onCancel() {
-                    handleClose();
-                    callback.onSuccess(null);
-                }
-            });
-            ask.show();
+            dialogFactory.createConfirmDialog(
+                    "Close", "'" + getEditorInput().getName() + "' has been modified. Save changes?", new ConfirmCallback() {
+                        @Override
+                        public void accepted() {
+                            doSave();
+                            handleClose();
+                            callback.onSuccess(null);
+                        }
+                    },
+                    new CancelCallback() {
+                        @Override
+                        public void cancelled() {
+                            handleClose();
+                            callback.onSuccess(null);
+                        }
+                    }).show();
         } else {
             handleClose();
             callback.onSuccess(null);
