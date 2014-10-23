@@ -14,16 +14,16 @@ import com.codenvy.api.project.gwt.client.ProjectServiceClient;
 import com.codenvy.ide.api.editor.EditorPartPresenter;
 import com.codenvy.ide.api.editor.EditorProvider;
 import com.codenvy.ide.tutorial.wysiwyg.editor.WysiwygEditor;
+import com.codenvy.ide.ui.dialogs.DialogFactory;
 
-/**
- * @author <a href="mailto:evidolob@codenvy.com">Evgen Vidolob</a>
- * @version $Id:
- */
+/** @author Evgen Vidolob */
 public class WysiwygEditorProvider implements EditorProvider {
     private final ProjectServiceClient projectServiceClient;
+    private final DialogFactory        dialogFactory;
 
-    public WysiwygEditorProvider(ProjectServiceClient projectServiceClient) {
+    public WysiwygEditorProvider(ProjectServiceClient projectServiceClient, DialogFactory dialogFactory) {
         this.projectServiceClient = projectServiceClient;
+        this.dialogFactory = dialogFactory;
     }
 
     @Override
@@ -39,6 +39,6 @@ public class WysiwygEditorProvider implements EditorProvider {
     /** {@inheritDoc} */
     @Override
     public EditorPartPresenter getEditor() {
-        return new WysiwygEditor(projectServiceClient);
+        return new WysiwygEditor(projectServiceClient, dialogFactory);
     }
 }
