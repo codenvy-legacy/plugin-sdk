@@ -45,12 +45,12 @@ public class ActionTutorialExtension {
 
         // Create main group
         DefaultActionGroup actionGroup = new DefaultActionGroup("Actions", false, actionManager);
-        actionManager.registerAction("ActionsGroup", actionGroup);
+        actionManager.registerAction("actionsGroup", actionGroup);
 
         // Create drop down group
         DefaultActionGroup popupGroup = new DefaultActionGroup("Drop down group", true, actionManager);
         popupGroup.getTemplatePresentation().setIcon(resources.item());
-        actionManager.registerAction("DropDownGroup", popupGroup);
+        actionManager.registerAction("dropDownGroup", popupGroup);
         actionGroup.add(popupGroup);
 
         // Add separator
@@ -58,7 +58,7 @@ public class ActionTutorialExtension {
 
         // Create general(not drop down) group
         DefaultActionGroup notPopupGroup = new DefaultActionGroup("General group", false, actionManager);
-        actionManager.registerAction("GeneralGroup", notPopupGroup);
+        actionManager.registerAction("generalGroup", notPopupGroup);
         actionGroup.add(notPopupGroup);
 
         popupGroup.add(changeItemAction);
