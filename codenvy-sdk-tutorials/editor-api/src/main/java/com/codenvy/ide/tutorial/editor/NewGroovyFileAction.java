@@ -28,7 +28,6 @@ public class NewGroovyFileAction extends AbstractNewResourceAction {
     public NewGroovyFileAction(EditorTutorialResource resource) {
         super("Groovy file",
               "Creates new Groovy file",
-              resource.groovyFile(),
               null);
         this.resource = resource;
     }
