@@ -40,7 +40,7 @@ public class AnalyticsEventLoggerExtension {
      */
     @Inject
     public AnalyticsEventLoggerExtension(ActionManager actionManager, AnalyticsEventAction action) {
-        actionManager.registerAction("AnalyticsEventID", action);
+        actionManager.registerAction("analyticsEventID", action);
 
         DefaultActionGroup contextMenu =
                 (DefaultActionGroup)actionManager.getAction(IdeActions.GROUP_MAIN_CONTEXT_MENU);

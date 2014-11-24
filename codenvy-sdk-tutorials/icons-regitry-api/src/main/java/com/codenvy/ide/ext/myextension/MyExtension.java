@@ -44,7 +44,7 @@ public class MyExtension
     @Inject
     public MyExtension(ActionManager actionManager, MyAction action, IconRegistry iconRegistry) {
         iconRegistry.registerIcon(new Icon("my.icon", "my-extension/mammoth_happy.png"));
-        actionManager.registerAction("HelloWorldID", action);
+        actionManager.registerAction("helloWorldID", action);
 
         DefaultActionGroup contextMenu = (DefaultActionGroup)actionManager.getAction(IdeActions.GROUP_HELP);
 

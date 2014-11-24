@@ -52,7 +52,7 @@ public class WizardTutorialExtension {
         DefaultActionGroup mainMenu = (DefaultActionGroup)actionManager.getAction(GROUP_MAIN_MENU);
 
         DefaultActionGroup group = new DefaultActionGroup("Wizard", true, actionManager);
-        actionManager.registerAction("Wizard", group);
+        actionManager.registerAction("wizard", group);
 
         group.add(openSimpleWizardAction);
         mainMenu.add(group);

@@ -39,7 +39,7 @@ public class HelloWorldExtension
 {
     @Inject
     public HelloWorldExtension(ActionManager actionManager, HelloWorldAction action) {
-        actionManager.registerAction("HelloWorldID", action);
+        actionManager.registerAction("helloWorldID", action);
 
         DefaultActionGroup contextMenu = (DefaultActionGroup)actionManager.getAction(IdeActions.GROUP_MAIN_TOOLBAR);
 

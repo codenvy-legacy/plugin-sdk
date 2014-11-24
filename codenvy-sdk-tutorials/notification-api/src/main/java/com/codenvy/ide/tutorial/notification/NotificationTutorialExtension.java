@@ -29,7 +29,7 @@ import static com.codenvy.ide.api.action.IdeActions.GROUP_MAIN_MENU;
 @Singleton
 @Extension(title = "Notification tutorial", version = "1.0.0")
 public class NotificationTutorialExtension {
-    public static final String NOTIFICATION_TUTORIAL_GROUP = "Notification";
+    public static final String NOTIFICATION_TUTORIAL_GROUP = "notification";
 
     @Inject
     public NotificationTutorialExtension(ActionManager actionManager, ShowInfoNotification showInfoNotification,
