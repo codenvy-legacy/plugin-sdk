@@ -10,6 +10,10 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.wysiwyg.editor;
 
+import javax.annotation.Nonnull;
+
+import org.vectomatic.dom.svg.ui.SVGResource;
+
 import com.codenvy.api.project.gwt.client.ProjectServiceClient;
 import com.codenvy.ide.api.editor.AbstractEditorPresenter;
 import com.codenvy.ide.api.editor.EditorInput;
@@ -26,16 +30,12 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RichTextArea;
 
-import org.vectomatic.dom.svg.ui.SVGResource;
-
-import javax.annotation.Nonnull;
-
 /** @author Evgen Vidolob */
 public class WysiwygEditor extends AbstractEditorPresenter {
 
-    private       ProjectServiceClient projectServiceClient;
-    private final DialogFactory        dialogFactory;
-    private       RichTextArea         textArea;
+    private ProjectServiceClient projectServiceClient;
+    private final DialogFactory dialogFactory;
+    private RichTextArea textArea;
 
     public WysiwygEditor(ProjectServiceClient projectServiceClient, DialogFactory dialogFactory) {
         this.projectServiceClient = projectServiceClient;
@@ -45,7 +45,7 @@ public class WysiwygEditor extends AbstractEditorPresenter {
     /** {@inheritDoc} */
     @Override
     protected void initializeEditor() {
-        //create editor
+        // create editor
         textArea = new RichTextArea();
 
         projectServiceClient.getFileContent(input.getFile().getPath(), new AsyncRequestCallback<String>(new StringUnmarshaller()) {
@@ -111,21 +111,22 @@ public class WysiwygEditor extends AbstractEditorPresenter {
     public void onClose(@Nonnull final AsyncCallback<Void> callback) {
         if (isDirty()) {
             dialogFactory.createConfirmDialog(
-                    "Close", "'" + getEditorInput().getName() + "' has been modified. Save changes?", new ConfirmCallback() {
-                        @Override
-                        public void accepted() {
-                            doSave();
-                            handleClose();
-                            callback.onSuccess(null);
-                        }
-                    },
-                    new CancelCallback() {
-                        @Override
-                        public void cancelled() {
-                            handleClose();
-                            callback.onSuccess(null);
-                        }
-                    }).show();
+                                              "Close", "'" + getEditorInput().getName() + "' has been modified. Save changes?",
+                                              new ConfirmCallback() {
+                                                  @Override
+                                                  public void accepted() {
+                                                      doSave();
+                                                      handleClose();
+                                                      callback.onSuccess(null);
+                                                  }
+                                              },
+                                              new CancelCallback() {
+                                                  @Override
+                                                  public void cancelled() {
+                                                      handleClose();
+                                                      callback.onSuccess(null);
+                                                  }
+                                              }).show();
         } else {
             handleClose();
             callback.onSuccess(null);
@@ -146,5 +147,9 @@ public class WysiwygEditor extends AbstractEditorPresenter {
 
         // Add the components to a panel
         container.setWidget(panel);
+    }
+
+    @Override
+    public void close(boolean save) {
     }
 }
