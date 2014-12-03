@@ -10,32 +10,17 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.editor.editor;
 
-import com.codenvy.ide.api.texteditor.TextEditorConfiguration;
-import com.codenvy.ide.api.texteditor.TextEditorPartView;
-import com.codenvy.ide.api.texteditor.parser.BasicTokenFactory;
-import com.codenvy.ide.api.texteditor.parser.CmParser;
-import com.codenvy.ide.api.texteditor.parser.Parser;
+import com.codenvy.ide.jseditor.client.editorconfig.DefaultTextEditorConfiguration;
 
-import javax.validation.constraints.NotNull;
-
-import static com.codenvy.ide.tutorial.editor.EditorTutorialExtension.GROOVY_MIME_TYPE;
 
 /**
  * The groovy file type editor configuration.
- *
+ * 
  * @author <a href="mailto:aplotnikov@codenvy.com">Andrey Plotnikov</a>
  */
-public class GroovyEditorConfiguration extends TextEditorConfiguration {
+public class GroovyEditorConfiguration extends DefaultTextEditorConfiguration {
 
     public GroovyEditorConfiguration() {
         super();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Parser getParser(@NotNull TextEditorPartView view) {
-        CmParser parser = getParserForMime(GROOVY_MIME_TYPE);
-        parser.setNameAndFactory("groovy", new BasicTokenFactory());
-        return parser;
     }
 }

@@ -10,29 +10,26 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.editor.editor;
 
-import com.codenvy.ide.api.editor.CodenvyTextEditor;
-import com.codenvy.ide.api.editor.DocumentProvider;
 import com.codenvy.ide.api.editor.EditorPartPresenter;
 import com.codenvy.ide.api.editor.EditorProvider;
 import com.codenvy.ide.api.notification.NotificationManager;
+import com.codenvy.ide.jseditor.client.defaulteditor.DefaultEditorProvider;
+import com.codenvy.ide.jseditor.client.texteditor.ConfigurableTextEditor;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 
 /**
  * EditorProvider for Groovy file type.
- *
+ * 
  * @author <a href="mailto:aplotnikov@codenvy.com">Andrey Plotnikov</a>
  */
 public class GroovyEditorProvider implements EditorProvider {
-    private final DocumentProvider            documentProvider;
-    private       Provider<CodenvyTextEditor> editorProvider;
-    private final NotificationManager         notificationManager;
+    private final DefaultEditorProvider editorProvider;
+    private final NotificationManager notificationManager;
 
     @Inject
-    public GroovyEditorProvider(DocumentProvider documentProvider, Provider<CodenvyTextEditor> editorProvider,
-                                NotificationManager notificationManager) {
+    public GroovyEditorProvider(final DefaultEditorProvider editorProvider,
+                                final NotificationManager notificationManager) {
         super();
-        this.documentProvider = documentProvider;
         this.editorProvider = editorProvider;
         this.notificationManager = notificationManager;
     }
@@ -50,8 +47,8 @@ public class GroovyEditorProvider implements EditorProvider {
     /** {@inheritDoc} */
     @Override
     public EditorPartPresenter getEditor() {
-        CodenvyTextEditor textEditor = editorProvider.get();
-        textEditor.initialize(new GroovyEditorConfiguration(), documentProvider, notificationManager);
+        ConfigurableTextEditor textEditor = editorProvider.getEditor();
+        textEditor.initialize(new GroovyEditorConfiguration(), notificationManager);
         return textEditor;
     }
 }
