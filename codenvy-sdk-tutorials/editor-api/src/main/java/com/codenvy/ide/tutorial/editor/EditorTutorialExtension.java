@@ -10,6 +10,9 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.editor;
 
+import static com.codenvy.ide.api.action.IdeActions.GROUP_FILE_NEW;
+import static com.codenvy.ide.api.parts.PartStackType.EDITING;
+
 import com.codenvy.ide.api.action.ActionManager;
 import com.codenvy.ide.api.action.DefaultActionGroup;
 import com.codenvy.ide.api.editor.EditorRegistry;
@@ -19,13 +22,8 @@ import com.codenvy.ide.api.filetypes.FileTypeRegistry;
 import com.codenvy.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.editor.editor.GroovyEditorProvider;
 import com.codenvy.ide.tutorial.editor.part.TutorialHowToPresenter;
-import com.google.gwt.core.client.ScriptInjector;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import static com.codenvy.ide.api.action.IdeActions.GROUP_FILE_NEW;
-import static com.codenvy.ide.api.parts.PartStackType.EDITING;
-import static com.google.gwt.core.client.ScriptInjector.TOP_WINDOW;
 
 /** Extension used to demonstrate the Editor API. */
 @Singleton
@@ -43,8 +41,6 @@ public class EditorTutorialExtension {
                                    ActionManager actionManager,
                                    NewGroovyFileAction newGroovyFileAction,
                                    EditorTutorialResource resource) {
-        editorTutorialResource.groovyCSS().ensureInjected();
-        ScriptInjector.fromString(editorTutorialResource.groovyParserJS().getText()).setWindow(TOP_WINDOW).inject();
 
         workspaceAgent.openPart(howToPresenter, EDITING);
 
