@@ -11,22 +11,15 @@
 package com.codenvy.ide.tutorial.editor;
 
 import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.resources.client.TextResource;
 
 /**
  * The resources for editor tutorial.
- *
+ * 
  * @author <a href="mailto:aplotnikov@codenvy.com">Andrey Plotnikov</a>
  */
 public interface EditorTutorialResource extends ClientBundle {
-
-    @Source("groovy.css")
-    CssResource groovyCSS();
-
-    @Source("groovy.js")
-    TextResource groovyParserJS();
 
     @Source("content.txt")
     TextResource contentFile();
