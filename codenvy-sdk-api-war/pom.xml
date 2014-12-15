@@ -96,17 +96,17 @@
         </dependency>
         <dependency>
             <groupId>com.codenvy.plugin-java</groupId>
-            <artifactId>codenvy-generator-archetype</artifactId>
-            <version>${codenvy.plugin-java.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codenvy.plugin-java</groupId>
             <artifactId>codenvy-ext-java</artifactId>
             <version>${codenvy.plugin-java.version}</version>
         </dependency>
         <dependency>
             <groupId>com.codenvy.plugin-java</groupId>
             <artifactId>codenvy-ext-maven</artifactId>
+            <version>${codenvy.plugin-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codenvy.plugin-java</groupId>
+            <artifactId>codenvy-generator-archetype</artifactId>
             <version>${codenvy.plugin-java.version}</version>
         </dependency>
         <dependency>
