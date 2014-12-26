@@ -20,6 +20,7 @@ import com.codenvy.api.runner.RunnerException;
 import com.codenvy.commons.lang.IoUtil;
 import com.codenvy.commons.lang.ZipUtils;
 import com.codenvy.ide.commons.GwtXmlUtils;
+import com.codenvy.ide.maven.tools.Dependency;
 import com.codenvy.ide.maven.tools.MavenUtils;
 
 import org.apache.maven.model.Build;
@@ -89,10 +90,16 @@ public class CodeServer {
                                      final ExecutorService executor) throws RunnerException {
         try {
             ZipUtils.unzip(Utils.getCodenvyPlatformBinaryDistribution().openStream(), workDirPath.toFile());
-            MavenUtils.addDependency(workDirPath.resolve("pom.xml").toFile(),
-                                     extensionDescriptor.groupId,
+
+            final File pom = workDirPath.resolve("pom.xml").toFile();
+            final com.codenvy.ide.maven.tools.Model model = com.codenvy.ide.maven.tools.Model.readFrom(pom);
+
+            model.dependencies()
+                 .add(new Dependency(extensionDescriptor.groupId,
                                      extensionDescriptor.artifactId,
-                                     extensionDescriptor.version, null);
+                                     extensionDescriptor.version));
+            model.writeTo(pom);
+
             GwtXmlUtils.inheritGwtModule(IoUtil.findFile(SDKRunner.IDE_GWT_XML_FILE_NAME, workDirPath.toFile()).toPath(),
                                          extensionDescriptor.gwtModuleName);
             setCodeServerConfiguration(workDirPath.resolve("pom.xml"), workDirPath, runnerConfiguration);
