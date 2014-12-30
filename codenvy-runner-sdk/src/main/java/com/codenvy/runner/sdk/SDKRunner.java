@@ -29,7 +29,9 @@ import com.codenvy.commons.lang.IoUtil;
 import com.codenvy.commons.lang.ZipUtils;
 import com.codenvy.dto.server.DtoFactory;
 import com.codenvy.ide.commons.GwtXmlUtils;
+import com.codenvy.ide.maven.tools.Dependency;
 import com.codenvy.ide.maven.tools.MavenUtils;
+import com.codenvy.ide.maven.tools.Model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -228,11 +231,14 @@ public class SDKRunner extends Runner {
             ZipUtils.unzip(Utils.getCodenvyPlatformBinaryDistribution().openStream(), workDirPath.toFile());
 
             // integrate extension to Codenvy Platform
-            MavenUtils.addDependency(workDirPath.resolve("pom.xml").toFile(),
-                                     extension.groupId,
+            final File pom = workDirPath.resolve("pom.xml").toFile();
+            final Model model = Model.readFrom(pom);
+            model.dependencies()
+                 .add(new Dependency(extension.groupId,
                                      extension.artifactId,
-                                     extension.version,
-                                     null);
+                                     extension.version));
+            model.writeTo(pom);
+
             GwtXmlUtils.inheritGwtModule(IoUtil.findFile(SDKRunner.IDE_GWT_XML_FILE_NAME, workDirPath.toFile()).toPath(),
                                          extension.gwtModuleName);
 
