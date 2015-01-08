@@ -23,6 +23,7 @@ import com.codenvy.ide.ext.tutorials.client.action.ShowTutorialGuideAction;
 import com.codenvy.ide.ext.tutorials.client.action.UpdateAction;
 import com.codenvy.ide.ext.tutorials.client.wizard.ExtensionPagePresenter;
 import com.codenvy.ide.ext.tutorials.shared.Constants;
+import com.codenvy.ide.extension.maven.client.projecttree.MavenProjectTreeStructureProvider;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -60,8 +61,9 @@ public class TutorialsExtension {
         iconRegistry.registerIcon(new Icon("Codenvy.samples.category.icon", resources.samplesCategoryCodenvy()));
 
         // use Maven project tree for 'Codenvy Extension' and 'Tutorial' project types
-        treeStructureProviderRegistry.associateProjectTypeToTreeProvider(Constants.TUTORIAL_ID, "maven");
-        treeStructureProviderRegistry.associateProjectTypeToTreeProvider(com.codenvy.ide.Constants.CODENVY_PLUGIN_ID, "maven");
+        treeStructureProviderRegistry.associateProjectTypeToTreeProvider(Constants.TUTORIAL_ID, MavenProjectTreeStructureProvider.ID);
+        treeStructureProviderRegistry.associateProjectTypeToTreeProvider(com.codenvy.ide.Constants.CODENVY_PLUGIN_ID,
+                                                                         MavenProjectTreeStructureProvider.ID);
 
         // register actions
         DefaultActionGroup windowMenuActionGroup = (DefaultActionGroup)actionManager.getAction(GROUP_WINDOW);
