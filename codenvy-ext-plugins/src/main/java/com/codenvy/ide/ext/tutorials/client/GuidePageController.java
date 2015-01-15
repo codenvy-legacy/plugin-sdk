@@ -39,14 +39,15 @@ public class GuidePageController {
             @Override
             public void onProjectOpened(ProjectActionEvent event) {
                 if (event.getProject().getType().equals(Constants.TUTORIAL_ID)) {
-                    openTutorialGuide();
+//                    openTutorialGuide();
                 }
             }
 
             @Override
             public void onProjectClosed(ProjectActionEvent event) {
                 if (event.getProject().getDescription().equals(Constants.TUTORIAL_ID)) {
-                    closeTutorialGuide();
+//                    closeTutorialGuide();
+
                 }
             }
         });
