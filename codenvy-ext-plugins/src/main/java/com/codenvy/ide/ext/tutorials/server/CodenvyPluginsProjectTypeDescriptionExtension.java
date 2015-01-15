@@ -15,6 +15,7 @@ import com.codenvy.api.project.server.ProjectTypeDescriptionRegistry;
 import com.codenvy.api.project.server.AttributeDescription;
 import com.codenvy.api.project.server.ProjectType;
 import com.codenvy.ide.ext.tutorials.shared.Constants;
+import com.codenvy.ide.extension.maven.shared.MavenAttributes;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -47,6 +48,20 @@ public class CodenvyPluginsProjectTypeDescriptionExtension implements ProjectTyp
         list.add(new AttributeDescription(Constants.LANGUAGE_VERSION));
         list.add(new AttributeDescription(Constants.FRAMEWORK));
         list.add(new AttributeDescription(Constants.BUILDER_MAVEN_SOURCE_FOLDERS));
+
+        list.add(new AttributeDescription(MavenAttributes.GROUP_ID));
+        list.add(new AttributeDescription(MavenAttributes.ARTIFACT_ID));
+        list.add(new AttributeDescription(MavenAttributes.VERSION));
+        list.add(new AttributeDescription(MavenAttributes.PARENT_VERSION));
+        list.add(new AttributeDescription(MavenAttributes.PARENT_ARTIFACT_ID));
+        list.add(new AttributeDescription(MavenAttributes.PARENT_GROUP_ID));
+        list.add(new AttributeDescription(MavenAttributes.PACKAGING));
+
+        list.add(new AttributeDescription(MavenAttributes.SOURCE_FOLDER));
+        list.add(new AttributeDescription(MavenAttributes.TEST_SOURCE_FOLDER));
+
+
+
         return list;
     }
 }
