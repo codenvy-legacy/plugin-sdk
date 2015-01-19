@@ -21,15 +21,9 @@ import com.codenvy.commons.lang.IoUtil;
 import com.codenvy.commons.lang.ZipUtils;
 import com.codenvy.ide.commons.GwtXmlUtils;
 import com.codenvy.ide.maven.tools.Dependency;
-import com.codenvy.ide.maven.tools.MavenUtils;
+import com.codenvy.ide.maven.tools.Model;
+import com.codenvy.ide.maven.tools.Plugin;
 
-import org.apache.maven.model.Build;
-import org.apache.maven.model.Model;
-import org.apache.maven.model.Plugin;
-import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
-import org.codehaus.plexus.util.xml.Xpp3DomUtils;
-import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -47,16 +41,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -136,42 +124,29 @@ public class CodeServer {
     }
 
     /** Set the GWT code server configuration in the specified pom.xml file. */
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    private void setCodeServerConfiguration(Path pomPath, Path codeServerWorkDir, SDKRunnerConfiguration runnerConfiguration)
-            throws RunnerException {
-        final String confWorkDir = codeServerWorkDir == null ? "" : "<codeServerWorkDir>" + codeServerWorkDir + "</codeServerWorkDir>";
-
-        final String bindAddress = runnerConfiguration.getCodeServerBindAddress();
-        final String confBindAddress = bindAddress == null ? "" : "<bindAddress>" + bindAddress + "</bindAddress>";
-
-        final int port = runnerConfiguration.getCodeServerPort();
-        final String confPort = port == -1 ? "" : "<codeServerPort>" + port + "</codeServerPort>";
-
-        final String codeServerConf = String.format("<configuration>%s%s%s</configuration>", confWorkDir, confBindAddress, confPort);
-
+    private void setCodeServerConfiguration(Path pom,
+                                            Path codeServerWorkDir,
+                                            SDKRunnerConfiguration runnerConfiguration) throws RunnerException {
         try {
-            Model pom;
-            try (Reader reader = Files.newBufferedReader(pomPath, Charset.forName("UTF-8"))) {
-                pom = MavenUtils.readModel(reader);
-            } catch (IOException e) {
-                throw new RunnerException(String.format("Error occurred while parsing pom.xml: %s", e.getMessage()), e);
+            final Model model = Model.readFrom(pom);
+            final Plugin gwtPlugin = model.getBuild()
+                                          .getPluginsAsMap()
+                                          .get("org.codehaus.mojo:gwt-maven-plugin");
+            if (codeServerWorkDir != null) {
+                gwtPlugin.setConfigProperty("codeServerWorkDir", codeServerWorkDir.toString());
             }
-            Build build = pom.getBuild();
-            Map<String, Plugin> plugins = build.getPluginsAsMap();
-            Plugin gwtPlugin = plugins.get("org.codehaus.mojo:gwt-maven-plugin");
-            Xpp3Dom existingConfiguration = (Xpp3Dom)gwtPlugin.getConfiguration();
-            Xpp3Dom additionalConfiguration;
-            try {
-                additionalConfiguration = Xpp3DomBuilder.build(new StringReader(codeServerConf));
-            } catch (XmlPullParserException e) {
-                throw new RunnerException(e);
+
+            final String bindAddress = runnerConfiguration.getCodeServerBindAddress();
+            if (bindAddress != null) {
+                gwtPlugin.setConfigProperty("bindAddress", bindAddress);
             }
-            Xpp3Dom mergedConfiguration = Xpp3DomUtils.mergeXpp3Dom(existingConfiguration, additionalConfiguration);
-            gwtPlugin.setConfiguration(mergedConfiguration);
-            build.setPlugins(new ArrayList(plugins.values()));
-            try (Writer writer = Files.newBufferedWriter(pomPath, Charset.forName("UTF-8"))) {
-                MavenUtils.writeModel(pom, writer);
+
+            final int port = runnerConfiguration.getCodeServerPort();
+            if (port != - 1) {
+                gwtPlugin.setConfigProperty("codeServerPort", Integer.toString(port));
             }
+
+            model.save();
         } catch (IOException e) {
             throw new RunnerException(e);
         }

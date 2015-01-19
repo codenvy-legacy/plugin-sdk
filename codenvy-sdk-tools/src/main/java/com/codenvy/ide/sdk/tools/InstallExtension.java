@@ -14,8 +14,7 @@ import com.codenvy.commons.lang.IoUtil;
 import com.codenvy.ide.commons.GwtXmlUtils;
 import com.codenvy.ide.maven.tools.Dependency;
 import com.codenvy.ide.maven.tools.MavenUtils;
-
-import org.apache.maven.model.Model;
+import com.codenvy.ide.maven.tools.Model;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -137,7 +136,7 @@ public class InstallExtension {
 
             String gwtModuleName = gwtXmlEntry.getName().replace(File.separatorChar, '.');
             gwtModuleName = gwtModuleName.substring(0, gwtModuleName.length() - GwtXmlUtils.GWT_MODULE_XML_SUFFIX.length());
-            Model pom = MavenUtils.readModel(zipFile.getInputStream(pomEntry));
+            Model pom = Model.readFrom(zipFile.getInputStream(pomEntry));
             return new Extension(gwtModuleName, MavenUtils.getGroupId(pom), pom.getArtifactId(), MavenUtils.getVersion(pom));
         }
     }

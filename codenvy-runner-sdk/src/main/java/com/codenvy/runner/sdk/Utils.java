@@ -22,8 +22,7 @@ import com.codenvy.api.project.shared.dto.ProjectDescriptor;
 import com.codenvy.commons.lang.IoUtil;
 import com.codenvy.ide.commons.GwtXmlUtils;
 import com.codenvy.ide.maven.tools.MavenUtils;
-
-import org.apache.maven.model.Model;
+import com.codenvy.ide.maven.tools.Model;
 
 import java.io.IOException;
 import java.net.URL;
@@ -157,7 +156,7 @@ class Utils {
 
             String gwtModuleName = gwtXmlEntry.getName();
             gwtModuleName = gwtModuleName.substring(0, gwtModuleName.length() - GwtXmlUtils.GWT_MODULE_XML_SUFFIX.length());
-            Model pom = MavenUtils.readModel(zipFile.getInputStream(pomEntry));
+            Model pom = Model.readFrom(zipFile.getInputStream(pomEntry));
             List<String> sourceDirectories = MavenUtils.getSourceDirectories(pom);
             sourceDirectories.addAll(MavenUtils.getResourceDirectories(pom));
             for (String src : sourceDirectories) {
