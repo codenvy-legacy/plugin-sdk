@@ -63,6 +63,12 @@
             <version>${javax.ws.rs.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.codenvy.plugin-runner</groupId>
+            <artifactId>codenvy-plugin-runner</artifactId>
+            <version>${codenvy.plugin.runner.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
             <version>${com.google.gwt.version}</version>

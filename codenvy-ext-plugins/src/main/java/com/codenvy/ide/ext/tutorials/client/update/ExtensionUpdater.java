@@ -14,9 +14,7 @@ import com.codenvy.ide.api.app.AppContext;
 import com.codenvy.ide.api.app.CurrentProject;
 import com.codenvy.ide.api.notification.Notification;
 import com.codenvy.ide.api.notification.NotificationManager;
-import com.codenvy.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.ext.tutorials.client.TutorialsLocalizationConstant;
-import com.codenvy.ide.extension.runner.client.console.RunnerConsolePresenter;
 import com.codenvy.ide.websocket.WebSocketException;
 import com.codenvy.ide.websocket.rest.RequestCallback;
 
@@ -29,26 +27,20 @@ import static com.codenvy.ide.api.notification.Notification.Type.ERROR;
 /**
  * @author Vitaly Parfonov
  */
-public class ExtensionUpdater implements Notification.OpenNotificationHandler  {
+public class ExtensionUpdater implements Notification.OpenNotificationHandler {
 
     private UpdateServiceClient           updateServiceClient;
-    private WorkspaceAgent                workspaceAgent;
     private NotificationManager           notificationManager;
-    private RunnerConsolePresenter        console;
     private AppContext                    appContext;
     private TutorialsLocalizationConstant localizationConstant;
 
     @Inject
     public ExtensionUpdater(UpdateServiceClient updateServiceClient,
-                            WorkspaceAgent workspaceAgent,
                             NotificationManager notificationManager,
-                            RunnerConsolePresenter console,
                             AppContext appContext,
                             TutorialsLocalizationConstant localizationConstant) {
         this.updateServiceClient = updateServiceClient;
-        this.workspaceAgent = workspaceAgent;
         this.notificationManager = notificationManager;
-        this.console = console;
         this.appContext = appContext;
         this.localizationConstant = localizationConstant;
     }
@@ -72,10 +64,12 @@ public class ExtensionUpdater implements Notification.OpenNotificationHandler  {
                 protected void onFailure(Throwable exception) {
                     notification.setStatus(FINISHED);
                     notification.setType(ERROR);
-                    notification.setMessage(localizationConstant.updateApplicationFailed(currentProject.getProjectDescription().getName()));
 
                     if (exception != null && exception.getMessage() != null) {
-                        console.print(exception.getMessage());
+                        notification.setMessage(exception.getMessage());
+                    } else {
+                        notification
+                                .setMessage(localizationConstant.updateApplicationFailed(currentProject.getProjectDescription().getName()));
                     }
                 }
             });
@@ -88,6 +82,5 @@ public class ExtensionUpdater implements Notification.OpenNotificationHandler  {
 
     @Override
     public void onOpenClicked() {
-        workspaceAgent.setActivePart(console);
     }
 }

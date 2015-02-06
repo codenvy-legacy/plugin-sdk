@@ -17,8 +17,8 @@ import com.codenvy.ide.api.action.ActionEvent;
 import com.codenvy.ide.api.app.AppContext;
 import com.codenvy.ide.api.app.CurrentProject;
 import com.codenvy.ide.ext.tutorials.client.TutorialsLocalizationConstant;
+import com.codenvy.ide.ext.tutorials.client.TutorialsResources;
 import com.codenvy.ide.ext.tutorials.client.update.ExtensionUpdater;
-import com.codenvy.ide.extension.runner.client.RunnerResources;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -34,7 +34,7 @@ public class UpdateAction extends Action {
 
     @Inject
     public UpdateAction(ExtensionUpdater extensionsUpdater,
-                        RunnerResources resources,
+                        TutorialsResources resources,
                         TutorialsLocalizationConstant localizationConstants,
                         AppContext appContext) {
         super(localizationConstants.updateExtensionText(), localizationConstants.updateExtensionDescription(),
