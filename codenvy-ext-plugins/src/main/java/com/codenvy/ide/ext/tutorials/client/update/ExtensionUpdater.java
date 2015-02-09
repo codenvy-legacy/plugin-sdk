@@ -65,12 +65,13 @@ public class ExtensionUpdater implements Notification.OpenNotificationHandler {
                     notification.setStatus(FINISHED);
                     notification.setType(ERROR);
 
+                    String message;
                     if (exception != null && exception.getMessage() != null) {
-                        notification.setMessage(exception.getMessage());
+                        message = exception.getMessage();
                     } else {
-                        notification
-                                .setMessage(localizationConstant.updateApplicationFailed(currentProject.getProjectDescription().getName()));
+                        message = localizationConstant.updateApplicationFailed(currentProject.getProjectDescription().getName());
                     }
+                    notification.setMessage(message);
                 }
             });
         } catch (WebSocketException e) {
