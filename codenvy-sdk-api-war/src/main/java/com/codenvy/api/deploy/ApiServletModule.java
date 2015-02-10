@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.api.deploy;
 
-import com.codenvy.ide.env.SingleEnvironmentFilter;
+import com.codenvy.ide.env.server.SingleEnvironmentFilter;
 import com.codenvy.everrest.CodenvyEverrestWebSocketServlet;
 import com.codenvy.inject.DynaModule;
 import com.google.inject.servlet.ServletModule;
