@@ -16,11 +16,4 @@ public interface Constants {
     final String TUTORIAL_ID   = "codenvy_tutorial";
     // project type names
     final String TUTORIAL_NAME = "Codenvy Tutorial";
-
-    final String CODENVY_TUTORIAL_CATEGORY = "Codenvy";
-    // project attribute names
-    final String LANGUAGE                     = "language";
-    final String LANGUAGE_VERSION             = "language.version";
-    final String FRAMEWORK                    = "framework";
-    final String BUILDER_MAVEN_SOURCE_FOLDERS = "builder.maven.source_folders";
 }

@@ -11,17 +11,20 @@
 package com.codenvy.ide.ext.tutorials.server;
 
 import com.codenvy.api.project.server.type.ProjectType;
-import com.codenvy.inject.DynaModule;
-import com.google.inject.AbstractModule;
-import com.google.inject.multibindings.Multibinder;
+import com.codenvy.ide.extension.maven.server.projecttype.MavenProjectType;
+import com.google.inject.Inject;
+
+import static com.codenvy.ide.ext.tutorials.shared.Constants.TUTORIAL_ID;
+import static com.codenvy.ide.ext.tutorials.shared.Constants.TUTORIAL_NAME;
 
 /** @author Artem Zatsarynnyy */
-@DynaModule
-public class CodenvyPluginsModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        Multibinder<ProjectType> projectTypeMultibinder = Multibinder.newSetBinder(binder(), ProjectType.class);
-        projectTypeMultibinder.addBinding().to(ExtensionProjectType.class);
-        projectTypeMultibinder.addBinding().to(TutorialProjectType.class);
+public class TutorialProjectType extends ProjectType {
+
+    @Inject
+    public TutorialProjectType(MavenProjectType mavenProjectType) {
+        super(TUTORIAL_ID, TUTORIAL_NAME, true, false);
+
+        addParent(mavenProjectType);
+        setDefaultRunner("system:/sdk/tomcat7");
     }
 }
