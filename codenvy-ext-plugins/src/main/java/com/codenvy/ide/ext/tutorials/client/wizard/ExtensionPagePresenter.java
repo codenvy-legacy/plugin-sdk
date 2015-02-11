@@ -15,7 +15,7 @@ import com.codenvy.api.project.shared.dto.ImportProject;
 import com.codenvy.ide.api.projecttype.wizard.ProjectWizardMode;
 import com.codenvy.ide.api.wizard.AbstractWizardPage;
 import com.codenvy.ide.rest.AsyncRequestCallback;
-import com.codenvy.ide.rest.StringMapUnmarshaller;
+import com.codenvy.ide.rest.StringMapListUnmarshaller;
 import com.codenvy.ide.util.loging.Log;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
@@ -73,13 +73,13 @@ public class ExtensionPagePresenter extends AbstractWizardPage<ImportProject> im
             setAttribute(TEST_SOURCE_FOLDER, DEFAULT_TEST_SOURCE_FOLDER);
         } else if (UPDATE == wizardMode && getAttribute(ARTIFACT_ID).isEmpty()) {
             projectServiceClient.estimateProject(context.get(PROJECT_PATH_KEY), MAVEN_ID,
-                                                 new AsyncRequestCallback<Map<String, String>>(new StringMapUnmarshaller()) {
+                                                 new AsyncRequestCallback<Map<String, List<String>>>(new StringMapListUnmarshaller()) {
                                                      @Override
-                                                     protected void onSuccess(Map<String, String> result) {
-                                                         setAttribute(ARTIFACT_ID, result.get(ARTIFACT_ID));
-                                                         setAttribute(GROUP_ID, result.get(GROUP_ID));
-                                                         setAttribute(VERSION, result.get(VERSION));
-                                                         setAttribute(PACKAGING, result.get(PACKAGING));
+                                                     protected void onSuccess(Map<String, List<String>> result) {
+                                                         setAttribute(ARTIFACT_ID, result.get(ARTIFACT_ID).get(0));
+                                                         setAttribute(GROUP_ID, result.get(GROUP_ID).get(0));
+                                                         setAttribute(VERSION, result.get(VERSION).get(0));
+                                                         setAttribute(PACKAGING, result.get(PACKAGING).get(0));
                                                      }
 
                                                      @Override
