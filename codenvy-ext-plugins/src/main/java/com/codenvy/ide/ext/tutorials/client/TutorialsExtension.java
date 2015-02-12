@@ -15,17 +15,12 @@ import com.codenvy.ide.api.action.DefaultActionGroup;
 import com.codenvy.ide.api.extension.Extension;
 import com.codenvy.ide.api.icon.Icon;
 import com.codenvy.ide.api.icon.IconRegistry;
-import com.codenvy.ide.api.notification.NotificationManager;
 import com.codenvy.ide.api.projecttree.TreeStructureProviderRegistry;
-import com.codenvy.ide.api.projecttype.wizard.ProjectTypeWizardRegistry;
-import com.codenvy.ide.api.projecttype.wizard.ProjectWizard;
 import com.codenvy.ide.ext.tutorials.client.action.ShowTutorialGuideAction;
 import com.codenvy.ide.ext.tutorials.client.action.UpdateAction;
-import com.codenvy.ide.ext.tutorials.client.wizard.ExtensionPagePresenter;
 import com.codenvy.ide.ext.tutorials.shared.Constants;
 import com.codenvy.ide.extension.maven.client.projecttree.MavenProjectTreeStructureProvider;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 import static com.codenvy.ide.api.action.IdeActions.GROUP_RUN;
@@ -48,10 +43,7 @@ public class TutorialsExtension {
                               ActionManager actionManager,
                               ShowTutorialGuideAction showAction,
                               UpdateAction updateAction,
-                              ProjectTypeWizardRegistry wizardRegistry,
-                              NotificationManager notificationManager,
                               IconRegistry iconRegistry,
-                              Provider<ExtensionPagePresenter> extensionPagePresenter,
                               TreeStructureProviderRegistry treeStructureProviderRegistry) {
         resources.tutorialsCss().ensureInjected();
 
@@ -74,10 +66,5 @@ public class TutorialsExtension {
         actionManager.registerAction(localizationConstants.updateExtensionActionId(), updateAction);
         DefaultActionGroup runMenuActionGroup = (DefaultActionGroup)actionManager.getAction(GROUP_RUN);
         runMenuActionGroup.add(updateAction);
-
-        ProjectWizard wizard = new ProjectWizard(notificationManager);
-        wizard.addPage(extensionPagePresenter);
-        wizardRegistry.addWizard(Constants.TUTORIAL_ID, wizard);
-        wizardRegistry.addWizard(com.codenvy.ide.Constants.CODENVY_PLUGIN_ID, wizard);
     }
 }
