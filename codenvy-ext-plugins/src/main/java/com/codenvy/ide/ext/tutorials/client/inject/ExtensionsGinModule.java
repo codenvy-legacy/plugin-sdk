@@ -11,9 +11,13 @@
 package com.codenvy.ide.ext.tutorials.client.inject;
 
 import com.codenvy.ide.api.extension.ExtensionGinModule;
+import com.codenvy.ide.api.projecttype.wizard.ProjectWizardRegistrar;
 import com.codenvy.ide.ext.tutorials.client.update.UpdateServiceClient;
 import com.codenvy.ide.ext.tutorials.client.update.UpdateServiceClientImpl;
+import com.codenvy.ide.ext.tutorials.client.wizard.ExtensionProjectWizardRegistrar;
+import com.codenvy.ide.ext.tutorials.client.wizard.TutorialProjectWizardRegistrar;
 import com.google.gwt.inject.client.AbstractGinModule;
+import com.google.gwt.inject.client.multibindings.GinMultibinder;
 import com.google.inject.Singleton;
 
 /**
@@ -24,5 +28,9 @@ public class ExtensionsGinModule extends AbstractGinModule {
     @Override
     protected void configure() {
         bind(UpdateServiceClient.class).to(UpdateServiceClientImpl.class).in(Singleton.class);
+
+        GinMultibinder<ProjectWizardRegistrar> projectWizardBinder = GinMultibinder.newSetBinder(binder(), ProjectWizardRegistrar.class);
+        projectWizardBinder.addBinding().to(ExtensionProjectWizardRegistrar.class);
+        projectWizardBinder.addBinding().to(TutorialProjectWizardRegistrar.class);
     }
 }

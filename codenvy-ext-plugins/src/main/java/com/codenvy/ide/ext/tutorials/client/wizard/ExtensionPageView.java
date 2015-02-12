@@ -18,28 +18,27 @@ import com.google.inject.ImplementedBy;
  */
 @ImplementedBy(ExtensionPageViewImpl.class)
 public interface ExtensionPageView extends View<ExtensionPageView.ActionDelegate> {
-    void setArtifactId(String artifact);
-
-    void setGroupId(String group);
-
-    void setVersion(String value);
-
     void reset();
-
-    public interface ActionDelegate{
-
-        void onTextsChange();
-    }
 
     String getGroupId();
 
+    void setGroupId(String group);
+
     String getArtifactId();
 
+    void setArtifactId(String artifact);
+
     String getVersion();
+
+    void setVersion(String value);
 
     void showArtifactIdMissingIndicator(boolean show);
 
     void showGroupIdMissingIndicator(boolean show);
 
     void showVersionMissingIndicator(boolean show);
+
+    public interface ActionDelegate {
+        void onTextsChange();
+    }
 }
