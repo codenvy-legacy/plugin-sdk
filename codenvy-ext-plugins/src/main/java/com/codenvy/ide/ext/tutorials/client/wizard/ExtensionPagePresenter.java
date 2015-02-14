@@ -107,6 +107,8 @@ public class ExtensionPagePresenter extends AbstractWizardPage<ImportProject> im
                         if (packagingValues != null && !packagingValues.isEmpty()) {
                             setAttribute(PACKAGING, packagingValues.get(0));
                         }
+
+                        updateDelegate.updateControls();
                     }
 
                     @Override
