@@ -30,14 +30,14 @@ import static com.codenvy.api.project.server.DtoConverter.toTemplateDescriptor;
  * @author Vitaly Parfonov
  */
 @Singleton
-public class ProjectTemplateRegistrator {
+public class ProjectTemplateRegistrar {
 
     private final String baseUrl;
     private final ProjectTemplateRegistry projectTemplateRegistry;
 
     @Inject
-    public ProjectTemplateRegistrator(@Named("extension-url") String baseUrl,
-                                      ProjectTemplateRegistry projectTemplateRegistry) {
+    public ProjectTemplateRegistrar(@Named("extension-url") String baseUrl,
+                                    ProjectTemplateRegistry projectTemplateRegistry) {
         this.baseUrl = baseUrl;
         this.projectTemplateRegistry = projectTemplateRegistry;
 
