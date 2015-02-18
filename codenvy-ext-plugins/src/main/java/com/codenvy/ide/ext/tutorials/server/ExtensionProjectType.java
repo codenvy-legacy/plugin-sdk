@@ -25,6 +25,7 @@ public class ExtensionProjectType extends ProjectType {
         super(CODENVY_PLUGIN_ID, CODENVY_PLUGIN_NAME, true, false);
 
         addParent(mavenProjectType);
+        setDefaultBuilder("maven");
         setDefaultRunner("system:/sdk/tomcat7");
     }
 }

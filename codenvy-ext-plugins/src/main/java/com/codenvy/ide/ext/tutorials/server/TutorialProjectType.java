@@ -25,6 +25,7 @@ public class TutorialProjectType extends ProjectType {
         super(TUTORIAL_ID, TUTORIAL_NAME, true, false);
 
         addParent(mavenProjectType);
+        setDefaultBuilder("maven");
         setDefaultRunner("system:/sdk/tomcat7");
     }
 }
