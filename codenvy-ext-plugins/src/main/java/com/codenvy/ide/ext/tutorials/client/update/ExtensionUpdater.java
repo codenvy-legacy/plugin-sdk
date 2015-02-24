@@ -14,6 +14,8 @@ import com.codenvy.ide.api.app.AppContext;
 import com.codenvy.ide.api.app.CurrentProject;
 import com.codenvy.ide.api.notification.Notification;
 import com.codenvy.ide.api.notification.NotificationManager;
+import com.codenvy.ide.ext.runner.client.models.Runner;
+import com.codenvy.ide.ext.runner.client.selection.SelectionManager;
 import com.codenvy.ide.ext.tutorials.client.TutorialsLocalizationConstant;
 import com.codenvy.ide.websocket.WebSocketException;
 import com.codenvy.ide.websocket.rest.RequestCallback;
@@ -26,6 +28,7 @@ import static com.codenvy.ide.api.notification.Notification.Type.ERROR;
 
 /**
  * @author Vitaly Parfonov
+ * @author Valeriy Svydenko
  */
 public class ExtensionUpdater implements Notification.OpenNotificationHandler {
 
@@ -33,14 +36,17 @@ public class ExtensionUpdater implements Notification.OpenNotificationHandler {
     private NotificationManager           notificationManager;
     private AppContext                    appContext;
     private TutorialsLocalizationConstant localizationConstant;
+    private SelectionManager              selectionManager;
 
     @Inject
     public ExtensionUpdater(UpdateServiceClient updateServiceClient,
                             NotificationManager notificationManager,
                             AppContext appContext,
+                            SelectionManager selectionManager,
                             TutorialsLocalizationConstant localizationConstant) {
         this.updateServiceClient = updateServiceClient;
         this.notificationManager = notificationManager;
+        this.selectionManager = selectionManager;
         this.appContext = appContext;
         this.localizationConstant = localizationConstant;
     }
@@ -48,12 +54,16 @@ public class ExtensionUpdater implements Notification.OpenNotificationHandler {
     /** Updates launched Codenvy Extension. */
     public void updateExtension() {
         final CurrentProject currentProject = appContext.getCurrentProject();
+        Runner selectionRunner = selectionManager.getRunner();
+        if (selectionRunner == null) {
+            return;
+        }
         final Notification notification =
                 new Notification(localizationConstant.applicationUpdating(currentProject.getProjectDescription().getName()), PROGRESS,
                                  ExtensionUpdater.this);
         notificationManager.showNotification(notification);
         try {
-            updateServiceClient.update(currentProject.getProcessDescriptor(), new RequestCallback<Void>() {
+            updateServiceClient.update(selectionRunner, new RequestCallback<Void>() {
                 @Override
                 protected void onSuccess(Void result) {
                     notification.setStatus(FINISHED);
