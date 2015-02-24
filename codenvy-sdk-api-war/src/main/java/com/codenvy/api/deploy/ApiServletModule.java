@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.api.deploy;
 
-import com.codenvy.ide.env.SingleEnvironmentFilter;
+import com.codenvy.ide.env.server.SingleEnvironmentFilter;
 import com.codenvy.everrest.CodenvyEverrestWebSocketServlet;
 import com.codenvy.inject.DynaModule;
 import com.google.inject.servlet.ServletModule;
@@ -29,7 +29,7 @@ public class ApiServletModule extends ServletModule {
     protected void configureServlets() {
         getServletContext().addListener(new WSConnectionTracker());
         bind(SingleEnvironmentFilter.class).in(Singleton.class);
-        Map<String,String> params = new HashMap<>(2);
+        Map<String, String> params = new HashMap<>(2);
         params.put("ws-name", "default");
         params.put("ws-id", "1q2w3e");
         filter("/*").through(SingleEnvironmentFilter.class, params);

@@ -8,7 +8,7 @@
  * Contributors:
  *   Codenvy, S.A. - initial API and implementation
  *******************************************************************************/
-package com.codenvy.ide.env;
+package com.codenvy.ide.env.server;
 
 import com.codenvy.api.core.NotFoundException;
 import com.codenvy.api.core.ServerException;
