@@ -66,7 +66,7 @@ public class UpdateAction extends Action {
             // this action is specific for the Codenvy Extension project only
             e.getPresentation()
              .setVisible(Constants.CODENVY_PLUGIN_ID.equals(currentProject.getProjectDescription().getType()));
-            e.getPresentation().setEnabled(selectionRunner != null && selectionRunner.getStatus().equals(RUNNING));
+            e.getPresentation().setEnabled(selectionRunner != null && RUNNING.equals(selectionRunner.getStatus()));
         } else {
             e.getPresentation().setEnabledAndVisible(false);
         }
