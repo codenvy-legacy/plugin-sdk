@@ -116,7 +116,7 @@
         </dependency>
         <dependency>
             <groupId>com.codenvy.plugin-sdk</groupId>
-            <artifactId>codenvy-ide-env-dummy</artifactId>
+            <artifactId>codenvy-ide-env-local</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

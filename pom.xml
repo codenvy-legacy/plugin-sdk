@@ -25,7 +25,7 @@
     <name>Codenvy :: Plugin SDK</name>
     <modules>
         <module>codenvy-ext-plugins</module>
-        <module>codenvy-ide-env-dummy</module>
+        <module>codenvy-ide-env-local</module>
         <module>codenvy-sdk-api-war</module>
         <module>codenvy-runner-sdk</module>
         <module>codenvy-sdk-tutorials/action-api</module>
