@@ -26,6 +26,7 @@ import com.google.inject.Inject;
  * @author <a href="mailto:aplotnikov@codenvy.com">Andrey Plotnikov</a>
  */
 public class MyPartViewImpl extends BaseView<MyPartView.ActionDelegate> implements MyPartView {
+
     interface MyPartViewImplUiBinder extends UiBinder<Widget, MyPartViewImpl> {
     }
 
@@ -33,13 +34,15 @@ public class MyPartViewImpl extends BaseView<MyPartView.ActionDelegate> implemen
     Button button;
 
     @Inject
-    public MyPartViewImpl(MyPartViewImplUiBinder ourUiBinder, PartStackUIResources resources) {
+    public MyPartViewImpl(MyPartViewImplUiBinder uiBinder,
+                          PartStackUIResources resources) {
         super(resources);
-        container.add(ourUiBinder.createAndBindUi(this));
+        setContentWidget(uiBinder.createAndBindUi(this));
     }
 
     @UiHandler("button")
     public void onButtonClicked(ClickEvent event) {
         delegate.onButtonClicked();
     }
+
 }
