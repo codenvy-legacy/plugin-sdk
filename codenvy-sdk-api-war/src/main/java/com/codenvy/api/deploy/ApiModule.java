@@ -10,6 +10,9 @@
  *******************************************************************************/
 package com.codenvy.api.deploy;
 
+import com.codenvy.api.auth.AuthenticationService;
+import com.codenvy.api.auth.TokenExtractor;
+import com.codenvy.api.auth.UserProvider;
 import com.codenvy.api.builder.BuilderAdminService;
 import com.codenvy.api.builder.BuilderSelectionStrategy;
 import com.codenvy.api.builder.BuilderService;
@@ -24,6 +27,8 @@ import com.codenvy.api.user.server.UserProfileService;
 import com.codenvy.api.user.server.UserService;
 import com.codenvy.api.workspace.server.WorkspaceService;
 import com.codenvy.everrest.CodenvyAsynchronousJobPool;
+import com.codenvy.ide.env.DummyUserProvider;
+import com.codenvy.ide.env.DymmyHttpSessionTokenExtractor;
 import com.codenvy.inject.DynaModule;
 import com.codenvy.vfs.impl.fs.LocalFileSystemRegistryPlugin;
 import com.google.inject.AbstractModule;
@@ -53,6 +58,10 @@ public class ApiModule extends AbstractModule {
 
         bind(UserService.class);
         bind(UserProfileService.class);
+        bind(UserProvider.class).to(DummyUserProvider.class);
+        bind(TokenExtractor.class).to(DymmyHttpSessionTokenExtractor.class);
+        bind(AuthenticationService.class);
+
 
         bind(AsynchronousJobPool.class).to(CodenvyAsynchronousJobPool.class);
         bind(new PathKey<>(AsynchronousJobService.class, "/async/{ws-id}")).to(AsynchronousJobService.class);
