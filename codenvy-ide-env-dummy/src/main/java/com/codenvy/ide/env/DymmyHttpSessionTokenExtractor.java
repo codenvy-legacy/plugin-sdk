@@ -71,8 +71,9 @@ public class DymmyHttpSessionTokenExtractor implements TokenExtractor {
                 if (password != null) {
                     try {
 
-                        return HttpJsonHelper.post(Token.class, apiEndpoint + "auth/login",
-                                                   DtoFactory.getInstance().createDto(Credentials.class).withUsername(username)
+                        return HttpJsonHelper.post(Token.class, apiEndpoint + "/auth/login",
+                                                   DtoFactory.getInstance().createDto(Credentials.class)
+                                                             .withUsername(username)
                                                              .withPassword(password)).getValue();
 
                     } catch (IOException | ApiException e) {
@@ -81,7 +82,7 @@ public class DymmyHttpSessionTokenExtractor implements TokenExtractor {
                     }
                 } else {
                     try {
-                        return tokenManager.createToken(userDao.getById(username).getId());
+                        return tokenManager.createToken(userDao.getByAlias(username).getId());
                     } catch (NotFoundException | ServerException e) {
                         LOG.warn(e.getLocalizedMessage(), e);
                     }

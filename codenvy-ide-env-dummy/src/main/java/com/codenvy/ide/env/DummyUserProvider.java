@@ -80,6 +80,7 @@ public class DummyUserProvider implements UserProvider {
                     }
                 }
             }
+            return user;
 
         }
         return null;
