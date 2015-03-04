@@ -39,11 +39,17 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * Provider user by token.
+ * User and roles constructed only once and stored in session for future use.
+ *
+ * To be able to correctly set up user roles workspaceId and accountId have to be set up
+ * in EnvironmentContext. see SingleEnvironmentFilter.
+ *
  * @author Sergii Kabashniuk
  */
-public class DummyUserProvider implements UserProvider {
+public class SessionUserProvider implements UserProvider {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DummyUserProvider.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SessionUserProvider.class);
 
     @Inject
     SessionStore  sessionStore;

@@ -32,21 +32,19 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
+ * Provide token for single predefined user.
+ *
  * @author Sergii Kabashniuk
  */
-public class DymmyHttpSessionTokenExtractor implements TokenExtractor {
+public class SingleUserTokenExtractor implements TokenExtractor {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DymmyHttpSessionTokenExtractor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SingleUserTokenExtractor.class);
 
     @Inject
     protected TokenManager tokenManager;
 
     @Inject
     protected UserDao userDao;
-
-    @Inject
-    @Named("api.endpoint")
-    String apiEndpoint;
 
     @Override
     public String getToken(HttpServletRequest request) {
@@ -56,40 +54,12 @@ public class DymmyHttpSessionTokenExtractor implements TokenExtractor {
         if (user != null) {
             return user.getToken();
         } else {
-            if (user == null) {
-                final String query = request.getQueryString();
-                String username = null;
-                String password = null;
-                if (query != null) {
-                    username = request.getParameter("username");
-                    password = request.getParameter("password");
-                }
-                if (username == null) {
-                    username = "codenvy@codenvy.com";
-                }
-
-                if (password != null) {
-                    try {
-
-                        return HttpJsonHelper.post(Token.class, apiEndpoint + "/auth/login",
-                                                   DtoFactory.getInstance().createDto(Credentials.class)
-                                                             .withUsername(username)
-                                                             .withPassword(password)).getValue();
-
-                    } catch (IOException | ApiException e) {
-                        LOG.warn(e.getLocalizedMessage(), e);
-
-                    }
-                } else {
-                    try {
-                        return tokenManager.createToken(userDao.getByAlias(username).getId());
-                    } catch (NotFoundException | ServerException e) {
-                        LOG.warn(e.getLocalizedMessage(), e);
-                    }
-                }
-
+            try {
+                return tokenManager.createToken(userDao.getByAlias("codenvy@codenvy.com").getId());
+            } catch (NotFoundException | ServerException e) {
+                LOG.warn(e.getLocalizedMessage(), e);
             }
-            return null;
         }
+        return null;
     }
 }

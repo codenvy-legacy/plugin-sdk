@@ -30,8 +30,8 @@ import com.codenvy.api.user.server.UserProfileService;
 import com.codenvy.api.user.server.UserService;
 import com.codenvy.api.workspace.server.WorkspaceService;
 import com.codenvy.everrest.CodenvyAsynchronousJobPool;
-import com.codenvy.ide.env.DummyUserProvider;
-import com.codenvy.ide.env.DymmyHttpSessionTokenExtractor;
+import com.codenvy.ide.env.SessionUserProvider;
+import com.codenvy.ide.env.SingleUserTokenExtractor;
 import com.codenvy.inject.DynaModule;
 import com.codenvy.vfs.impl.fs.LocalFileSystemRegistryPlugin;
 import com.google.inject.AbstractModule;
@@ -61,8 +61,8 @@ public class ApiModule extends AbstractModule {
 
         bind(UserService.class);
         bind(UserProfileService.class);
-        bind(UserProvider.class).to(DummyUserProvider.class);
-        bind(TokenExtractor.class).to(DymmyHttpSessionTokenExtractor.class);
+        bind(UserProvider.class).to(SessionUserProvider.class);
+        bind(TokenExtractor.class).to(SingleUserTokenExtractor.class);
         bind(AuthenticationService.class);
         bind(TokenManager.class);
         bind(TokenGenerator.class).to(SecureRandomTokenGenerator.class);
