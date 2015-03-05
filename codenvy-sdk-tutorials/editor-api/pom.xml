@@ -16,7 +16,7 @@
     <parent>
         <artifactId>codenvy-plugin-sdk-parent</artifactId>
         <groupId>com.codenvy.plugin-sdk</groupId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.7.1</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>editor-api-tutorial</artifactId>
