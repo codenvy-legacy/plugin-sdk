@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.ext.tutorials.client.update;
 
-import com.codenvy.api.runner.dto.ApplicationProcessDescriptor;
+import com.codenvy.ide.ext.runner.client.models.Runner;
 import com.codenvy.ide.websocket.WebSocketException;
 import com.codenvy.ide.websocket.rest.RequestCallback;
 
@@ -20,17 +20,18 @@ import javax.validation.constraints.NotNull;
  * Client for service for updating launched Codenvy Extension on SDK runner.
  *
  * @author Artem Zatsarynnyy
+ * @author Valeriy Svydenko
  */
 public interface UpdateServiceClient {
     /**
      * Update launched extension.
      *
-     * @param applicationProcessDescriptor
-     *         {@link ApplicationProcessDescriptor} that represents a launched extension
+     * @param runner
+     *         {@link Runner} that represents a launched extension
      * @param callback
      *         the callback to use for the response
      * @throws WebSocketException
      */
-    public void update(ApplicationProcessDescriptor applicationProcessDescriptor, @NotNull RequestCallback<Void> callback)
+    public void update(@NotNull Runner runner, @NotNull RequestCallback<Void> callback)
             throws WebSocketException;
 }

@@ -36,6 +36,9 @@ public interface TutorialsResources extends ClientBundle {
     @Source("codenvyTutorialProject.png")
     ImageResource codenvyTutorialProject();
 
+    @Source("update.png")
+    ImageResource updateApp();
+
     @Source("guide.png")
     ImageResource guide();
 
