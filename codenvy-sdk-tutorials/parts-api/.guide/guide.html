@@ -67,7 +67,7 @@ As seen above, we can implement methods to add UI elements, like Pic, title, too
 
 These types of parts are available with pre-defined UI elements, and can be created in Navigation, Tooling and Information areas in this tutorial. However, developers can create them in any other suitable workspace areas.
 
-The workflow here slightly differs from the above case. We'll need to extend com.codenvy.ide.api.parts.base.BasePresenter:
+The workflow here slightly differs from the above case. We'll need to extend BasePresenter:
 <pre>
 public class MyPartPresenter extends BasePresenter implements MyPartView.ActionDelegate {
     private MyPartView view;
@@ -129,7 +129,7 @@ public interface ActionDelegate extends BaseActionDelegate {
 
 ActionDelegate is delegating functions from presenter. When we click minimize, a minimize method is called on the presenter through this delegate class. So, ActionDelegate for this kind of part should extend BaseActionDelegate.
 
-This also concerns View that should extend com.codenvy.ide.api.parts.base.BaseView. We extend baseView and pass it over to ActionDelegate. BaseView has own UI, background, minimize icon, and possibility to add title.
+This also concerns View that should extend BaseView. We extend baseView and pass it over to ActionDelegate. BaseView has own UI, background, minimize icon, and possibility to add title.
 <pre>
 public class MyPartViewImpl extends BaseView&lt;MyPartView.ActionDelegate&gt; implements MyPartView {
     interface MyPartViewImplUiBinder extends UiBinder&lt;Widget, MyPartViewImpl&gt; {

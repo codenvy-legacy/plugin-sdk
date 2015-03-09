@@ -10,18 +10,18 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.parts;
 
-import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.parts.PartPresenter;
-import com.codenvy.ide.api.parts.PartStackType;
-import com.codenvy.ide.api.parts.WorkspaceAgent;
+import org.eclipse.che.ide.api.extension.Extension;
+import org.eclipse.che.ide.api.parts.PartPresenter;
+import org.eclipse.che.ide.api.parts.PartStackType;
+import org.eclipse.che.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.parts.howto.TutorialHowToPresenter;
 import com.codenvy.ide.tutorial.parts.part.MyPartFactory;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import static com.codenvy.ide.api.parts.PartStackType.INFORMATION;
-import static com.codenvy.ide.api.parts.PartStackType.NAVIGATION;
-import static com.codenvy.ide.api.parts.PartStackType.TOOLING;
+import static org.eclipse.che.ide.api.parts.PartStackType.INFORMATION;
+import static org.eclipse.che.ide.api.parts.PartStackType.NAVIGATION;
+import static org.eclipse.che.ide.api.parts.PartStackType.TOOLING;
 
 /** Extension used to demonstrate the parts feature. */
 @Singleton

@@ -16,14 +16,14 @@ package com.codenvy.ide.ext.helloworld;
  * imports are obligatory as well for any extension
  */
 
-import com.codenvy.ide.api.action.ActionManager;
-import com.codenvy.ide.api.action.DefaultActionGroup;
-import com.codenvy.ide.api.action.IdeActions;
-import com.codenvy.ide.api.constraints.Constraints;
-import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.notification.Notification;
-import com.codenvy.ide.api.notification.Notification.Type;
-import com.codenvy.ide.api.notification.NotificationManager;
+import org.eclipse.che.ide.api.action.ActionManager;
+import org.eclipse.che.ide.api.action.DefaultActionGroup;
+import org.eclipse.che.ide.api.action.IdeActions;
+import org.eclipse.che.ide.api.constraints.Constraints;
+import org.eclipse.che.ide.api.extension.Extension;
+import org.eclipse.che.ide.api.notification.Notification;
+import org.eclipse.che.ide.api.notification.Notification.Type;
+import org.eclipse.che.ide.api.notification.NotificationManager;
 import com.codenvy.ide.ext.helloworld.action.HelloWorldAction;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

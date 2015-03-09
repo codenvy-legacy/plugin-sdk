@@ -24,26 +24,26 @@
     <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
     <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
     <!-- Other module inherits                                      -->
-    <inherits name='com.codenvy.ide.Api'/>
-    <inherits name="com.codenvy.ide.Core"/>
-    <inherits name="com.codenvy.ide.ui.CodenvyUI"/>
+    <inherits name='org.eclipse.che.ide.Api'/>
+    <inherits name="org.eclipse.che.ide.Core"/>
+    <inherits name="org.eclipse.che.ide.ui.CodenvyUI"/>
 
-    <inherits name='com.codenvy.api.Core'/>
-    <inherits name='com.codenvy.api.Project'/>
-    <inherits name='com.codenvy.api.Factory'/>
-    <inherits name='com.codenvy.api.Builder'/>
-    <inherits name='com.codenvy.api.Runner'/>
-    <inherits name='com.codenvy.api.Workspace'/>
-    <inherits name='com.codenvy.api.User'/>
-    <inherits name='com.codenvy.api.Account'/>
-    <inherits name='com.codenvy.api.VFS'/>
-    <inherits name='com.codenvy.api.Analytics'/>
-    <inherits name='com.codenvy.ide.editor.codemirror.CodeMirrorEditor'/>
+    <inherits name='org.eclipse.che.api.Core'/>
+    <inherits name='org.eclipse.che.api.Project'/>
+    <inherits name='org.eclipse.che.api.Factory'/>
+    <inherits name='org.eclipse.che.api.Builder'/>
+    <inherits name='org.eclipse.che.api.Runner'/>
+    <inherits name='org.eclipse.che.api.Workspace'/>
+    <inherits name='org.eclipse.che.api.User'/>
+    <inherits name='org.eclipse.che.api.Account'/>
+    <inherits name='org.eclipse.che.api.VFS'/>
+    <inherits name='org.eclipse.che.api.Analytics'/>
+    <inherits name='org.eclipse.che.ide.editor.codemirror.CodeMirrorEditor'/>
 
     <stylesheet src="IDE.css"/>
 
     <!-- Specify the app entry point class.                         -->
-    <entry-point class='com.codenvy.ide.client.IDE'/>
+    <entry-point class='IDE'/>
 
     <!-- Enable Super Dev Mode support.                             -->
     <add-linker name='xsiframe'/>

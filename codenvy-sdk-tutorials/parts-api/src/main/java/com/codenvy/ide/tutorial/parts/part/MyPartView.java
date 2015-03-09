@@ -10,8 +10,8 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.parts.part;
 
-import com.codenvy.ide.api.mvp.View;
-import com.codenvy.ide.api.parts.base.BaseActionDelegate;
+import org.eclipse.che.ide.api.mvp.View;
+import org.eclipse.che.ide.api.parts.base.BaseActionDelegate;
 import com.google.inject.ImplementedBy;
 
 /**

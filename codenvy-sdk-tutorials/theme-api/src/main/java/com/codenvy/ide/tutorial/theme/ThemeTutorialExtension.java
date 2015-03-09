@@ -10,9 +10,9 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.theme;
 
-import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.parts.PartStackType;
-import com.codenvy.ide.api.parts.WorkspaceAgent;
+import org.eclipse.che.ide.api.extension.Extension;
+import org.eclipse.che.ide.api.parts.PartStackType;
+import org.eclipse.che.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.theme.howto.TutorialHowToPresenter;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

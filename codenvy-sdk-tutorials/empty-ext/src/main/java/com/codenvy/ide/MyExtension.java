@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide;
 
-import com.codenvy.ide.api.extension.Extension;
+import org.eclipse.che.ide.api.extension.Extension;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 

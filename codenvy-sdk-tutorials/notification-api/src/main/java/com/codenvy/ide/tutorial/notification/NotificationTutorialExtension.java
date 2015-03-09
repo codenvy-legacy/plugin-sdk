@@ -10,11 +10,11 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.notification;
 
-import com.codenvy.ide.api.action.ActionManager;
-import com.codenvy.ide.api.action.DefaultActionGroup;
-import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.parts.PartStackType;
-import com.codenvy.ide.api.parts.WorkspaceAgent;
+import org.eclipse.che.ide.api.action.ActionManager;
+import org.eclipse.che.ide.api.action.DefaultActionGroup;
+import org.eclipse.che.ide.api.extension.Extension;
+import org.eclipse.che.ide.api.parts.PartStackType;
+import org.eclipse.che.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.notification.action.ShowErrorNotification;
 import com.codenvy.ide.tutorial.notification.action.ShowInfoNotification;
 import com.codenvy.ide.tutorial.notification.action.ShowProgressNotification;
@@ -23,7 +23,7 @@ import com.codenvy.ide.tutorial.notification.part.TutorialHowToPresenter;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import static com.codenvy.ide.api.action.IdeActions.GROUP_MAIN_MENU;
+import static org.eclipse.che.ide.api.action.IdeActions.GROUP_MAIN_MENU;
 
 /** Extension used to demonstrate the Notification feature. */
 @Singleton

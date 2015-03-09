@@ -10,8 +10,8 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.parts.part;
 
-import com.codenvy.ide.api.parts.PartStackUIResources;
-import com.codenvy.ide.api.parts.base.BaseView;
+import org.eclipse.che.ide.api.parts.PartStackUIResources;
+import org.eclipse.che.ide.api.parts.base.BaseView;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;

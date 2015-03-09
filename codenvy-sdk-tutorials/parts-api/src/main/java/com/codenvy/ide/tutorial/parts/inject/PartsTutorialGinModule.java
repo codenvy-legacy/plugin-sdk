@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.parts.inject;
 
-import com.codenvy.ide.api.extension.ExtensionGinModule;
+import org.eclipse.che.ide.api.extension.ExtensionGinModule;
 import com.codenvy.ide.tutorial.parts.part.MyPartFactory;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;

@@ -10,9 +10,9 @@
  *******************************************************************************/
 package com.codenvy.ide.extension.demo.createGist;
 
-import com.codenvy.ide.api.notification.Notification;
-import com.codenvy.ide.api.notification.NotificationManager;
-import com.codenvy.ide.api.parts.ConsolePart;
+import org.eclipse.che.ide.api.notification.Notification;
+import org.eclipse.che.ide.api.notification.NotificationManager;
+import org.eclipse.che.ide.api.parts.ConsolePart;
 import com.codenvy.ide.extension.demo.GistExtensionLocalizationConstant;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;

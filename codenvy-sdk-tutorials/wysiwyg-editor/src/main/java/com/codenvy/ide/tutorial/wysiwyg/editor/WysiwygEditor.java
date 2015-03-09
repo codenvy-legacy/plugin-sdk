@@ -14,15 +14,15 @@ import javax.annotation.Nonnull;
 
 import org.vectomatic.dom.svg.ui.SVGResource;
 
-import com.codenvy.api.project.gwt.client.ProjectServiceClient;
-import com.codenvy.ide.api.editor.AbstractEditorPresenter;
-import com.codenvy.ide.api.editor.EditorInput;
-import com.codenvy.ide.rest.AsyncRequestCallback;
-import com.codenvy.ide.rest.StringUnmarshaller;
-import com.codenvy.ide.ui.dialogs.CancelCallback;
-import com.codenvy.ide.ui.dialogs.ConfirmCallback;
-import com.codenvy.ide.ui.dialogs.DialogFactory;
-import com.codenvy.ide.util.loging.Log;
+import org.eclipse.che.api.project.gwt.client.ProjectServiceClient;
+import org.eclipse.che.ide.api.editor.AbstractEditorPresenter;
+import org.eclipse.che.ide.api.editor.EditorInput;
+import org.eclipse.che.ide.rest.AsyncRequestCallback;
+import org.eclipse.che.ide.rest.StringUnmarshaller;
+import org.eclipse.che.ide.ui.dialogs.CancelCallback;
+import org.eclipse.che.ide.ui.dialogs.ConfirmCallback;
+import org.eclipse.che.ide.ui.dialogs.DialogFactory;
+import org.eclipse.che.ide.util.loging.Log;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.rpc.AsyncCallback;

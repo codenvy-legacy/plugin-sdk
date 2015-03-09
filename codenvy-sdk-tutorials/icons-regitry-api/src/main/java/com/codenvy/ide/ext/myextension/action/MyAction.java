@@ -11,9 +11,9 @@
 package com.codenvy.ide.ext.myextension.action;
 
 
-import com.codenvy.ide.api.action.Action;
-import com.codenvy.ide.api.action.ActionEvent;
-import com.codenvy.ide.api.icon.IconRegistry;
+import org.eclipse.che.ide.api.action.Action;
+import org.eclipse.che.ide.api.action.ActionEvent;
+import org.eclipse.che.ide.api.icon.IconRegistry;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.inject.Inject;
 

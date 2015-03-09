@@ -10,17 +10,17 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.notification.action;
 
-import com.codenvy.ide.api.notification.Notification;
-import com.codenvy.ide.api.notification.NotificationManager;
-import com.codenvy.ide.api.action.Action;
-import com.codenvy.ide.api.action.ActionEvent;
+import org.eclipse.che.ide.api.notification.Notification;
+import org.eclipse.che.ide.api.notification.NotificationManager;
+import org.eclipse.che.ide.api.action.Action;
+import org.eclipse.che.ide.api.action.ActionEvent;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 
-import static com.codenvy.ide.api.notification.Notification.Status.FINISHED;
-import static com.codenvy.ide.api.notification.Notification.Status.PROGRESS;
-import static com.codenvy.ide.api.notification.Notification.Type.ERROR;
+import static org.eclipse.che.ide.api.notification.Notification.Status.FINISHED;
+import static org.eclipse.che.ide.api.notification.Notification.Status.PROGRESS;
+import static org.eclipse.che.ide.api.notification.Notification.Type.ERROR;
 
 /**
  * The action for showing PROGRESS notification.

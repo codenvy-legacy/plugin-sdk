@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.editor.editor;
 
-import com.codenvy.ide.jseditor.client.editorconfig.DefaultTextEditorConfiguration;
+import org.eclipse.che.ide.jseditor.client.editorconfig.DefaultTextEditorConfiguration;
 
 
 /**
