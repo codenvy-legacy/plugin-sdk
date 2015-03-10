@@ -10,18 +10,18 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.wysiwyg;
 
-import com.codenvy.ide.api.editor.EditorRegistry;
-import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.filetypes.FileType;
-import com.codenvy.ide.api.filetypes.FileTypeRegistry;
-import com.codenvy.ide.api.parts.WorkspaceAgent;
+import org.eclipse.che.ide.api.editor.EditorRegistry;
+import org.eclipse.che.ide.api.extension.Extension;
+import org.eclipse.che.ide.api.filetypes.FileType;
+import org.eclipse.che.ide.api.filetypes.FileTypeRegistry;
+import org.eclipse.che.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.wysiwyg.part.TutorialHowToPresenter;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.inject.Inject;
 
 import org.vectomatic.dom.svg.ui.SVGResource;
 
-import static com.codenvy.ide.api.parts.PartStackType.EDITING;
+import static org.eclipse.che.ide.api.parts.PartStackType.EDITING;
 
 /**
  * @author <a href="mailto:evidolob@codenvy.com">Evgen Vidolob</a>
@@ -29,7 +29,7 @@ import static com.codenvy.ide.api.parts.PartStackType.EDITING;
 @Extension(title = "WYSIWYG Editor Extension", version = "1.0")
 public class WysiwygExtension {
     public interface WysiwygResource extends ClientBundle {
-        @Source("com/codenvy/ide/tutorial/wysiwyg/html.svg")
+        @Source("org/eclipse/che/ide/tutorial/wysiwyg/html.svg")
         SVGResource htmlFile();
     }
 

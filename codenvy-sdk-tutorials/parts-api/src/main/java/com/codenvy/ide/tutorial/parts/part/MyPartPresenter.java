@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.parts.part;
 
-import com.codenvy.ide.api.parts.base.BasePresenter;
+import org.eclipse.che.ide.api.parts.base.BasePresenter;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;

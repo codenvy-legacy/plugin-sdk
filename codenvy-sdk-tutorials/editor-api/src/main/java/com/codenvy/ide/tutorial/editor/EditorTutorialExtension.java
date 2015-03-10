@@ -10,16 +10,16 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.editor;
 
-import static com.codenvy.ide.api.action.IdeActions.GROUP_FILE_NEW;
-import static com.codenvy.ide.api.parts.PartStackType.EDITING;
+import static org.eclipse.che.ide.api.action.IdeActions.GROUP_FILE_NEW;
+import static org.eclipse.che.ide.api.parts.PartStackType.EDITING;
 
-import com.codenvy.ide.api.action.ActionManager;
-import com.codenvy.ide.api.action.DefaultActionGroup;
-import com.codenvy.ide.api.editor.EditorRegistry;
-import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.filetypes.FileType;
-import com.codenvy.ide.api.filetypes.FileTypeRegistry;
-import com.codenvy.ide.api.parts.WorkspaceAgent;
+import org.eclipse.che.ide.api.action.ActionManager;
+import org.eclipse.che.ide.api.action.DefaultActionGroup;
+import org.eclipse.che.ide.api.editor.EditorRegistry;
+import org.eclipse.che.ide.api.extension.Extension;
+import org.eclipse.che.ide.api.filetypes.FileType;
+import org.eclipse.che.ide.api.filetypes.FileTypeRegistry;
+import org.eclipse.che.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.editor.editor.GroovyEditorProvider;
 import com.codenvy.ide.tutorial.editor.part.TutorialHowToPresenter;
 import com.google.inject.Inject;

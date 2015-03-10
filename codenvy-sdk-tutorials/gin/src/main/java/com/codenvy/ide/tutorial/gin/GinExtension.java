@@ -10,8 +10,8 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.gin;
 
-import com.codenvy.ide.api.extension.Extension;
-import com.codenvy.ide.api.parts.WorkspaceAgent;
+import org.eclipse.che.ide.api.extension.Extension;
+import org.eclipse.che.ide.api.parts.WorkspaceAgent;
 import com.codenvy.ide.tutorial.gin.annotation.MyClassWithAnnotationParam;
 import com.codenvy.ide.tutorial.gin.annotation.SimpleClass;
 import com.codenvy.ide.tutorial.gin.annotation.SimpleInterface;
@@ -23,14 +23,14 @@ import com.codenvy.ide.tutorial.gin.part.TutorialHowToPresenter;
 import com.codenvy.ide.tutorial.gin.sample.MyClass;
 import com.codenvy.ide.tutorial.gin.sample.MyClassWithProvideParam;
 import com.codenvy.ide.tutorial.gin.singleton.MySingletonClass;
-import com.codenvy.ide.util.loging.Log;
+import org.eclipse.che.ide.util.loging.Log;
 import com.google.gwt.inject.client.AsyncProvider;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
-import static com.codenvy.ide.api.parts.PartStackType.EDITING;
+import static org.eclipse.che.ide.api.parts.PartStackType.EDITING;
 
 /** Extension used to demonstrate how to use GIN. */
 @Singleton

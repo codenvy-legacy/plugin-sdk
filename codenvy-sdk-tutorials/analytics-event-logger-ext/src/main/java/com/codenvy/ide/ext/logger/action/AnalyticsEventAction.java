@@ -15,9 +15,9 @@ package com.codenvy.ide.ext.logger.action;
  * The 3rd import is required to call a default alert box.
  */
 
-import com.codenvy.api.analytics.client.logger.AnalyticsEventLogger;
-import com.codenvy.ide.api.action.Action;
-import com.codenvy.ide.api.action.ActionEvent;
+import org.eclipse.che.api.analytics.client.logger.AnalyticsEventLogger;
+import org.eclipse.che.ide.api.action.Action;
+import org.eclipse.che.ide.api.action.ActionEvent;
 import com.codenvy.ide.ext.logger.AnalyticsEventLoggerExtension;
 import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;

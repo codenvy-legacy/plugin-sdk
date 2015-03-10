@@ -10,9 +10,9 @@
  *******************************************************************************/
 package com.codenvy.ide.extension.demo;
 
-import com.codenvy.ide.api.action.ActionManager;
-import com.codenvy.ide.api.action.DefaultActionGroup;
-import com.codenvy.ide.api.extension.Extension;
+import org.eclipse.che.ide.api.action.ActionManager;
+import org.eclipse.che.ide.api.action.DefaultActionGroup;
+import org.eclipse.che.ide.api.extension.Extension;
 import com.codenvy.ide.extension.demo.actions.CreateGistAction;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

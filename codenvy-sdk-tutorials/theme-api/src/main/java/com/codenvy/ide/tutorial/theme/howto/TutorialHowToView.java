@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.theme.howto;
 
-import com.codenvy.ide.api.mvp.View;
+import org.eclipse.che.ide.api.mvp.View;
 import com.google.inject.ImplementedBy;
 
 /**

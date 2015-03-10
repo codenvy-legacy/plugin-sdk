@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.theme;
 
-import com.codenvy.ide.theme.DarkTheme;
+import org.eclipse.che.ide.theme.DarkTheme;
 
 /**
  * @author Evgen Vidolob

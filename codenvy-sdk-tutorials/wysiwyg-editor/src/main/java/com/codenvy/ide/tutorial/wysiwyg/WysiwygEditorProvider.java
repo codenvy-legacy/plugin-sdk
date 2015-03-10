@@ -10,11 +10,11 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.wysiwyg;
 
-import com.codenvy.api.project.gwt.client.ProjectServiceClient;
-import com.codenvy.ide.api.editor.EditorPartPresenter;
-import com.codenvy.ide.api.editor.EditorProvider;
+import org.eclipse.che.api.project.gwt.client.ProjectServiceClient;
+import org.eclipse.che.ide.api.editor.EditorPartPresenter;
+import org.eclipse.che.ide.api.editor.EditorProvider;
 import com.codenvy.ide.tutorial.wysiwyg.editor.WysiwygEditor;
-import com.codenvy.ide.ui.dialogs.DialogFactory;
+import org.eclipse.che.ide.ui.dialogs.DialogFactory;
 
 /** @author Evgen Vidolob */
 public class WysiwygEditorProvider implements EditorProvider {

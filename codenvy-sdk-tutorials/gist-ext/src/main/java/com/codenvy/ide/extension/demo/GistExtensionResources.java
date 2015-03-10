@@ -20,7 +20,7 @@ public interface GistExtensionResources extends ClientBundle {
         String textFont();
     }
 
-    @Source({"Gist.css", "com/codenvy/ide/api/ui/style.css"})
+    @Source({"Gist.css", "org/eclipse/che/ide/api/ui/style.css"})
     GistCSS gistCSS();
 
     @Source("github.png")

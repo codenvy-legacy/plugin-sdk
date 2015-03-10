@@ -14,12 +14,12 @@ package com.codenvy.ide.ext.helloworld.client.action;
  * As usual, importing resources, related to Action API.
  * The 3rd import is required to call a default alert box.
  */
-import com.codenvy.ide.api.action.Action;
-import com.codenvy.ide.api.action.ActionEvent;
+import org.eclipse.che.ide.api.action.Action;
+import org.eclipse.che.ide.api.action.ActionEvent;
 import com.codenvy.ide.ext.helloworld.client.Resource;
-import com.codenvy.ide.rest.AsyncRequest;
-import com.codenvy.ide.rest.AsyncRequestCallback;
-import com.codenvy.ide.rest.StringUnmarshaller;
+import org.eclipse.che.ide.rest.AsyncRequest;
+import org.eclipse.che.ide.rest.AsyncRequestCallback;
+import org.eclipse.che.ide.rest.StringUnmarshaller;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.user.client.Window;

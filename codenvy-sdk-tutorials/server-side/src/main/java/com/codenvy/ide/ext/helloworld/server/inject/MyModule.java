@@ -12,7 +12,7 @@ package com.codenvy.ide.ext.helloworld.server.inject;
 
 import com.codenvy.ide.ext.helloworld.server.HelloWorldService;
 import com.codenvy.ide.ext.helloworld.server.MyDependency;
-import com.codenvy.inject.DynaModule;
+import org.eclipse.che.inject.DynaModule;
 import com.google.inject.AbstractModule;
 
 /**

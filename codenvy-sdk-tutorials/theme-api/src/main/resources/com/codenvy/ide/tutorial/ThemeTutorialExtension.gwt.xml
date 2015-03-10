@@ -12,8 +12,8 @@
 -->
 <module>
     <inherits name="com.google.gwt.user.User"/>
-    <inherits name="com.codenvy.ide.Api"/>
-    <inherits name="com.codenvy.ide.Core"/>
+    <inherits name="org.eclipse.che.ide.Api"/>
+    <inherits name="org.eclipse.che.ide.Core"/>
     <inherits name="com.google.gwt.inject.Inject"/>
     <source path=""/>
 </module>

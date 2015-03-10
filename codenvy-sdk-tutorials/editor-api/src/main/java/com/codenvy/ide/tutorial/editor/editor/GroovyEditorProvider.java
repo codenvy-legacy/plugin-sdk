@@ -10,11 +10,11 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.editor.editor;
 
-import com.codenvy.ide.api.editor.EditorPartPresenter;
-import com.codenvy.ide.api.editor.EditorProvider;
-import com.codenvy.ide.api.notification.NotificationManager;
-import com.codenvy.ide.jseditor.client.defaulteditor.DefaultEditorProvider;
-import com.codenvy.ide.jseditor.client.texteditor.ConfigurableTextEditor;
+import org.eclipse.che.ide.api.editor.EditorPartPresenter;
+import org.eclipse.che.ide.api.editor.EditorProvider;
+import org.eclipse.che.ide.api.notification.NotificationManager;
+import org.eclipse.che.ide.jseditor.client.defaulteditor.DefaultEditorProvider;
+import org.eclipse.che.ide.jseditor.client.texteditor.ConfigurableTextEditor;
 import com.google.inject.Inject;
 
 /**

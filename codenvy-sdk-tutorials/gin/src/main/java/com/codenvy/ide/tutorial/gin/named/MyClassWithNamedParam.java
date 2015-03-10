@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.gin.named;
 
-import com.codenvy.ide.util.loging.Log;
+import org.eclipse.che.ide.util.loging.Log;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 

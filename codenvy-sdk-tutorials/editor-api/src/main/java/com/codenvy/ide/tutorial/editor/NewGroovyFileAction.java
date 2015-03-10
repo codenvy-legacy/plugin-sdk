@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.tutorial.editor;
 
-import com.codenvy.ide.newresource.AbstractNewResourceAction;
+import org.eclipse.che.ide.newresource.AbstractNewResourceAction;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 

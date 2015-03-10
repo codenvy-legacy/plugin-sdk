@@ -14,8 +14,8 @@ package com.codenvy.ide.ext.helloworld.action;
  * As usual, importing resources, related to Action API.
  * The 3rd import is required to call a default alert box.
  */
-import com.codenvy.ide.api.action.Action;
-import com.codenvy.ide.api.action.ActionEvent;
+import org.eclipse.che.ide.api.action.Action;
+import org.eclipse.che.ide.api.action.ActionEvent;
 import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 
