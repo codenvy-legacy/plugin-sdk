@@ -10,8 +10,8 @@
  *******************************************************************************/
 package com.codenvy.ide.env;
 
-import com.codenvy.api.auth.TokenExtractor;
-import com.codenvy.api.auth.TokenManager;
+import org.eclipse.che.api.auth.TokenExtractor;
+import org.eclipse.che.api.auth.TokenManager;
 import com.codenvy.api.auth.shared.dto.Credentials;
 import com.codenvy.api.auth.shared.dto.Token;
 import com.codenvy.api.core.ApiException;
@@ -21,7 +21,6 @@ import com.codenvy.api.core.rest.HttpJsonHelper;
 import com.codenvy.api.user.server.dao.UserDao;
 import com.codenvy.commons.user.User;
 import com.codenvy.dto.server.DtoFactory;
-import com.google.inject.name.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +28,6 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
 /**
  * Provide token for single predefined user.

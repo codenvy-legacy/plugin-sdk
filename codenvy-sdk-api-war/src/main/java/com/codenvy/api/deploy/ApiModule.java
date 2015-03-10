@@ -11,14 +11,14 @@
 package com.codenvy.api.deploy;
 
 import com.codenvy.api.auth.AuthenticationService;
-import com.codenvy.api.auth.InMemoryTokenManager;
-import com.codenvy.api.auth.LocalSessionInvalidationHandler;
-import com.codenvy.api.auth.SecureRandomTokenGenerator;
-import com.codenvy.api.auth.TokenExtractor;
-import com.codenvy.api.auth.TokenGenerator;
-import com.codenvy.api.auth.TokenInvalidationHandler;
-import com.codenvy.api.auth.TokenManager;
-import com.codenvy.api.auth.UserProvider;
+import org.eclipse.che.api.auth.InMemoryTokenManager;
+import org.eclipse.che.api.auth.LocalSessionInvalidationHandler;
+import org.eclipse.che.api.auth.SecureRandomTokenGenerator;
+import org.eclipse.che.api.auth.TokenExtractor;
+import org.eclipse.che.api.auth.TokenGenerator;
+import org.eclipse.che.api.auth.TokenInvalidationHandler;
+import org.eclipse.che.api.auth.TokenManager;
+import org.eclipse.che.api.auth.UserProvider;
 import com.codenvy.api.builder.BuilderAdminService;
 import com.codenvy.api.builder.BuilderSelectionStrategy;
 import com.codenvy.api.builder.BuilderService;
