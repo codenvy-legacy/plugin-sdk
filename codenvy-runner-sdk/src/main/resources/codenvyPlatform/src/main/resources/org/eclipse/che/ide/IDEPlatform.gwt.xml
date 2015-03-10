@@ -43,16 +43,9 @@
     <stylesheet src="IDE.css"/>
 
     <!-- Specify the app entry point class.                         -->
-    <entry-point class='IDE'/>
-
-    <!-- Enable Super Dev Mode support.                             -->
-    <add-linker name='xsiframe'/>
-    <set-configuration-property name='devModeRedirectEnabled' value='true'/>
-    <!-- Enable SourceMaps support.                                 -->
-    <set-property name='compiler.useSourceMaps' value='true'/>
+    <entry-point class='org.eclipse.che.ide.client.IDE'/>
 
     <!-- Specify the paths for translatable code                    -->
     <source path='client'/>
     <source path='shared'/>
-
 </module>

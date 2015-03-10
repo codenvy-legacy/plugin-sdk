@@ -173,7 +173,7 @@ public class CodeServer {
 
     private String codeServerUnix() {
         return String
-                .format("mvn clean generate-sources gwt:run-codeserver -Dgwt.module=com.codenvy.ide.IDEPlatform -P%s > stdout.log &\n",
+                .format("mvn clean generate-sources gwt:run-codeserver -Dgwt.compiler.incremental=false -Dgwt.module=org.eclipse.che.ide.IDEPlatform -P%s > stdout.log &\n",
                         ADD_SOURCES_PROFILE_ID);
     }
 
