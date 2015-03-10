@@ -42,6 +42,7 @@
         <module>codenvy-sdk-tutorials/wysiwyg-editor</module>
         <module>codenvy-sdk-tutorials/server-side</module>
         <module>codenvy-sdk-tools</module>
+        <module>codenvy-importer-sdk</module>
     </modules>
     <scm>
         <connection>scm:git:git@github.com:codenvy/plugin-sdk.git</connection>
