@@ -120,11 +120,6 @@
             <version>${codenvy.plugin-java.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.codenvy.plugin-sdk</groupId>
-            <artifactId>codenvy-ide-env-dummy</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.codenvy.vfs</groupId>
             <artifactId>codenvy-vfs-impl</artifactId>
             <version>${codenvy.vfs.impl.version}</version>
