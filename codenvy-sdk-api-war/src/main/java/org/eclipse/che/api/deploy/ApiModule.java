@@ -11,6 +11,7 @@
 package org.eclipse.che.api.deploy;
 
 import org.eclipse.che.api.auth.AuthenticationService;
+import org.eclipse.che.api.auth.CookiesTokenExtractor;
 import org.eclipse.che.api.auth.InMemoryTokenManager;
 import org.eclipse.che.api.auth.LocalSessionInvalidationHandler;
 import org.eclipse.che.api.auth.SecureRandomTokenGenerator;
@@ -25,6 +26,7 @@ import org.eclipse.che.api.builder.BuilderService;
 import org.eclipse.che.api.builder.LastInUseBuilderSelectionStrategy;
 import org.eclipse.che.api.builder.internal.BuilderModule;
 import org.eclipse.che.api.builder.internal.SlaveBuilderService;
+import org.eclipse.che.api.local.SessionUserProvider;
 import org.eclipse.che.api.runner.LastInUseRunnerSelectionStrategy;
 import org.eclipse.che.api.runner.RunnerAdminService;
 import org.eclipse.che.api.runner.RunnerSelectionStrategy;
@@ -43,8 +45,6 @@ import org.eclipse.che.everrest.CodenvyAsynchronousJobPool;
 
 import org.eclipse.che.api.core.rest.CoreRestModule;
 import org.eclipse.che.generator.archetype.ArchetypeGeneratorModule;
-import org.eclipse.che.ide.env.SessionUserProvider;
-import org.eclipse.che.ide.env.SingleUserTokenExtractor;
 import org.eclipse.che.inject.DynaModule;
 import org.eclipse.che.vfs.impl.fs.LocalFileSystemRegistryPlugin;
 import org.eclipse.che.vfs.impl.fs.VirtualFileSystemFSModule;
@@ -78,7 +78,7 @@ public class ApiModule extends AbstractModule {
 
 
         bind(UserProvider.class).to(SessionUserProvider.class);
-        bind(TokenExtractor.class).to(SingleUserTokenExtractor.class);
+        bind(TokenExtractor.class).to(CookiesTokenExtractor.class);
         bind(AuthenticationService.class);
         bind(TokenManager.class).to(InMemoryTokenManager.class);
         bind(TokenInvalidationHandler.class).to(LocalSessionInvalidationHandler.class);

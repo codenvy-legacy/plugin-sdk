@@ -11,7 +11,8 @@
 package org.eclipse.che.api.deploy;
 
 import org.eclipse.che.api.auth.DefaultAuthorizationFilter;
-import org.eclipse.che.ide.env.SingleEnvironmentFilter;
+
+import org.eclipse.che.api.local.SingleEnvironmentFilter;
 import org.eclipse.che.everrest.CodenvyEverrestWebSocketServlet;
 import org.eclipse.che.inject.DynaModule;
 
