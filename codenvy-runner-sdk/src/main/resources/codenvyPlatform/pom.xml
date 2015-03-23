@@ -29,6 +29,14 @@
         <generated.sources.directory>${project.build.directory}/generated-sources/gen</generated.sources.directory>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>codenvy-public-repo</id>
+            <name>codenvy public</name>
+            <url>https://maven.codenvycorp.com/content/groups/public/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>
