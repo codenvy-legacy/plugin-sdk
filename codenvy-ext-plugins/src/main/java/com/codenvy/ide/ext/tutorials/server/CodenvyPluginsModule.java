@@ -10,6 +10,7 @@
  *******************************************************************************/
 package com.codenvy.ide.ext.tutorials.server;
 
+import com.codenvy.api.project.server.handlers.ProjectHandler;
 import com.codenvy.api.project.server.type.ProjectType;
 import com.codenvy.inject.DynaModule;
 import com.google.inject.AbstractModule;
@@ -25,5 +26,8 @@ public class CodenvyPluginsModule extends AbstractModule {
         Multibinder<ProjectType> projectTypeMultibinder = Multibinder.newSetBinder(binder(), ProjectType.class);
         projectTypeMultibinder.addBinding().to(ExtensionProjectType.class);
         projectTypeMultibinder.addBinding().to(TutorialProjectType.class);
+        Multibinder.newSetBinder(binder(), ProjectHandler.class).addBinding().to(CodenvyTutorialGenerator.class);
+        Multibinder.newSetBinder(binder(), ProjectHandler.class).addBinding().to(CodenvyExtensionGenerator.class);
+
     }
 }
