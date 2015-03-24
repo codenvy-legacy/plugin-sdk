@@ -26,6 +26,7 @@ import org.eclipse.che.api.builder.BuilderService;
 import org.eclipse.che.api.builder.LastInUseBuilderSelectionStrategy;
 import org.eclipse.che.api.builder.internal.BuilderModule;
 import org.eclipse.che.api.builder.internal.SlaveBuilderService;
+import org.eclipse.che.api.local.LocalInfrastructureModule;
 import org.eclipse.che.api.local.SessionUserProvider;
 import org.eclipse.che.api.runner.LastInUseRunnerSelectionStrategy;
 import org.eclipse.che.api.runner.RunnerAdminService;
@@ -77,13 +78,7 @@ public class ApiModule extends AbstractModule {
         bind(UserProfileService.class);
 
 
-        bind(UserProvider.class).to(SessionUserProvider.class);
-        bind(TokenExtractor.class).to(CookiesTokenExtractor.class);
         bind(AuthenticationService.class);
-        bind(TokenManager.class).to(InMemoryTokenManager.class);
-        bind(TokenInvalidationHandler.class).to(LocalSessionInvalidationHandler.class);
-        bind(TokenGenerator.class).to(SecureRandomTokenGenerator.class);
-
 
         bind(AsynchronousJobPool.class).to(CodenvyAsynchronousJobPool.class);
         bind(new PathKey<>(AsynchronousJobService.class, "/async/{ws-id}")).to(AsynchronousJobService.class);
@@ -97,5 +92,6 @@ public class ApiModule extends AbstractModule {
         install(new RunnerModule());
         install(new VirtualFileSystemModule());
         install(new VirtualFileSystemFSModule());
+        install(new LocalInfrastructureModule());
     }
 }

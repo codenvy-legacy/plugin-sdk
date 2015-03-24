@@ -10,14 +10,12 @@
  *******************************************************************************/
 package org.eclipse.che.api.deploy;
 
-import org.eclipse.che.api.auth.DefaultAuthorizationFilter;
+import com.google.inject.servlet.ServletModule;
 
+import org.eclipse.che.api.local.AutoLoginAuthorizationFilter;
 import org.eclipse.che.api.local.SingleEnvironmentFilter;
 import org.eclipse.che.everrest.CodenvyEverrestWebSocketServlet;
 import org.eclipse.che.inject.DynaModule;
-
-import com.google.inject.servlet.ServletModule;
-
 import org.everrest.guice.servlet.GuiceEverrestServlet;
 import org.everrest.websockets.WSConnectionTracker;
 
@@ -37,7 +35,7 @@ public class ApiServletModule extends ServletModule {
         params.put("ws-id", "1q2w3e");
         params.put("account-id", "ac0398756");
         filter("/*").through(SingleEnvironmentFilter.class, params);
-        filter("/*").through(DefaultAuthorizationFilter.class);
+        filter("/*").through(AutoLoginAuthorizationFilter.class);
         serve("/ws/*").with(CodenvyEverrestWebSocketServlet.class);
         serve("/*").with(GuiceEverrestServlet.class);
     }
