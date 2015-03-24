@@ -10,7 +10,9 @@
  *******************************************************************************/
 package org.eclipse.che.ide.ext.tutorials.server;
 
+import org.eclipse.che.api.project.server.handlers.ProjectHandler;
 import org.eclipse.che.api.project.server.type.ProjectType;
+import org.eclipse.che.ide.extension.maven.server.projecttype.handler.MavenProjectGenerator;
 import org.eclipse.che.inject.DynaModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
@@ -25,5 +27,8 @@ public class CodenvyPluginsModule extends AbstractModule {
         Multibinder<ProjectType> projectTypeMultibinder = Multibinder.newSetBinder(binder(), ProjectType.class);
         projectTypeMultibinder.addBinding().to(ExtensionProjectType.class);
         projectTypeMultibinder.addBinding().to(TutorialProjectType.class);
+        Multibinder.newSetBinder(binder(), ProjectHandler.class).addBinding().to(CodenvyTutorialGenerator.class);
+        Multibinder.newSetBinder(binder(), ProjectHandler.class).addBinding().to(CodenvyExtensionGenerator.class);
+
     }
 }
