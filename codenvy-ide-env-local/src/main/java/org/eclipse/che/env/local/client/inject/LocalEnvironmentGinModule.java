@@ -25,7 +25,7 @@ import org.eclipse.che.ide.api.extension.ExtensionGinModule;
  * @author Vitaly Parfonov
  */
 @ExtensionGinModule
-public class LocalEnvirounmentGinModule extends AbstractGinModule {
+public class LocalEnvironmentGinModule extends AbstractGinModule {
     @Override
     protected void configure() {
         bind(ActionPermit.class).annotatedWith(Build.class).to(ActionPermitLocalEnv.class).in(Singleton.class);
